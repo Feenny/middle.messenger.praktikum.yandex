@@ -14,5 +14,5 @@ export default defineConfig({
 		host: 'localhost',
 		port: 3000,
 	},
-	publicDir: './assets'
+	publicDir: 'src/assets'
 });
