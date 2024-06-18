@@ -1,0 +1,19 @@
+{{#> Main page="login"}}
+  {{#> SidebarImg sidebar-bg="../../assets/side-bar/login-sidebar-bg.jpg"}}{{/ SidebarImg }}
+  <section class="login-content">
+  {{#> Dialog }}
+    <form class="login-page">
+      <div class="login-page__content">
+        {{> PageTitle title="Вход" }}
+        {{> InputField className="login-page__input" title="Логин" name="login" }}
+        {{> InputField className="login-page__input" title="Пароль" name="password" type="password" }}
+      </div>
+      <div class="login-page__footer">
+        {{> Button text="Войти" page="chat" }}
+        <p class="login-link"> Нет аккаунта?
+          {{> Link text="Зарегистрироваться" page="registration" }}
+        </p>
+      </div>
+    </form>
+  {{/ Dialog }}</section>
+{{/ Main}}

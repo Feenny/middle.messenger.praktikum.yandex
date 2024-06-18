@@ -1,0 +1,25 @@
+{{#> Main page="registration"}}
+  {{#> SidebarImg sidebar-bg="../../assets/side-bar/registration-sidebar-bg.jpg"}}{{/ SidebarImg }}
+  <section class="login-content">
+  {{#> Dialog }}
+    <form class="login-page">
+      <div class="login-page__content">
+        {{> PageTitle title="Регистрация" }}
+        <div class="name-group">
+            {{> InputField className="login-page__input" title="Имя" name="name" }}
+            {{> InputField className="login-page__input" title="Фамилия" name="surname" }}
+        </div>
+        {{> InputField className="login-page__input" title="Почта" name="login" }}
+        {{> InputField className="login-page__input" title="Логин" name="login" }}
+        {{> InputField className="login-page__input" title="Пароль" name="password" type="password" }}
+        {{> InputField className="login-page__input" title="Повторите пароль" name="password" type="password" }}
+      </div>
+      <div class="login-page__footer">
+        {{> Button text="Зарегистрироваться" page="chat" }}
+        <p class="login-link"> Есть аккаунт?
+          {{> Link text="Войти" page="login" }}
+        </p>
+      </div>
+    </form>
+  {{/ Dialog }}</section>
+{{/ Main}}

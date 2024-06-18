@@ -1,0 +1,28 @@
+@import './assets/variables';
+
+html, body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+
+main{
+  background: #ffffff;
+}
+body {
+  font: $font-regular;
+  background-color: $text-bgcolor;
+  color: $text-color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+a {
+  color: $link-color;
+}
+
+button {
+  font-size: inherit;
+  line-height: inherit;
+}
