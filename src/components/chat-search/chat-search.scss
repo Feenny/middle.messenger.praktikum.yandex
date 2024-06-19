@@ -2,18 +2,37 @@
 .chat-search{
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    height: 70px;
-    padding: 8px;
+    width: 100%;
+    position: relative;
+    margin-inline: 12px;
 }
 
 .search__input{
-    height: $input-height;
+    height: 36px;
     width: 100%;
-    margin-inline: 12px;
     border-radius: 35px;
-    padding: $input-padding;
-    background: rgb(243, 243, 247);
+    padding: 0 $input-search-offset-left;
+    background: #EDEEF0;
     outline: none;
     border: none;
 }
+.search__input:hover{
+    background-color: #E4E5E9;
+}
+
+.search__input_icon{
+    opacity: 0.4;
+    left: 12px;
+    position: absolute;
+}
+
+.search__input_placeholder{
+    left: $input-search-offset-left;
+    position: absolute;
+    color:$search-placeholder-color;
+}
+
+svg {
+    width: 25px;
+    height: 25px;
+  }

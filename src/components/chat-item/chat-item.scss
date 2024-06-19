@@ -9,12 +9,13 @@
   }
 
   &__block {
+    
     height: 70px;
     width: 100%;
     display: grid;
     grid-template:
-      "a n n" 13px
-      "a m u" 1fr
+      "a n n" 22px
+      "a m u" 24px
       / 47px 1fr 50px;
 
     gap: 0 10px;
@@ -37,6 +38,9 @@
   }
 
   &__name {
+    line-height: 22px !important;
+    vertical-align: middle;
+    font: $font-chat-name;
     grid-area: n;
     font-weight: $font-weight-semibold;
   }
@@ -47,11 +51,13 @@
   }
 
   &__message {
+    color: $secondary-text-color;
     grid-area: m;
   }
 
   &__message-text {
-    font: $font-small;
+    
+    font: $font-chat-message;
     margin-top: 4px;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -74,4 +80,9 @@
     justify-content: center;
     align-items: center;
   }
+}
+
+
+.chat-item:hover{
+  background-color: #F3F3F4;
 }

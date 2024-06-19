@@ -7,6 +7,8 @@ $font-weight-bold: 700;
 $font-large: #{$font-weight-regular} 40px/40px #{$font-body};
 $font-title: #{$font-weight-bold} 28px/28px #{$font-body};
 $font-big: #{$font-weight-regular} 24px/24px #{$font-body};
+$font-chat-name: #{$font-weight-regular} 16px/16px #{$font-body};
+$font-chat-message:  16px/16px #{$font-body};
 $font-button: #{$font-weight-semibold} 16px/16px #{$font-body};
 $font-regular: #{$font-weight-regular} 14px/14px #{$font-body};
 $font-small: #{$font-weight-regular} 12px/12px #{$font-body};
@@ -17,6 +19,8 @@ $font-nano: #{$font-weight-regular} 9px/9px #{$font-body};
 $border-light-color: #e1e1f5;
 
 $text-bgcolor: #FFF;
+$primary-text-color-rgb: 0, 0, 0;
+$secondary-text-color: #707579;
 $text-color: #000;
 $text-light-color: #8d8f9b;
 $text-red: #FF0000;
@@ -31,6 +35,14 @@ $button-bgcolor: linear-gradient(90deg, $link-color 0%, $link-color-2 100%);;
 $input-padding: 8px 16px;
 $input-height: 44px;
 $input-border-radius: 12px;
+$input-search-offset-left: 42px;
+
+$search-placeholder-color: #A4A5AF;
+$search-placeholder-color-hover: #818C99;
+
+
+
+
 $menu-button-color: #{$button-bgcolor};
 $menu-button-bgcolor: #F5F5F5;
 
