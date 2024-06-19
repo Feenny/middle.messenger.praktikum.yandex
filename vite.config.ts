@@ -1,6 +1,7 @@
 import dns from 'dns';
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
+import { viteStaticCopy } from 'vite-plugin-static-copy'
 
 dns.setDefaultResultOrder('verbatim');
 
@@ -14,5 +15,16 @@ export default defineConfig({
 		host: 'localhost',
 		port: 3000,
 	},
-	publicDir: '/public'
+	plugins: [
+		viteStaticCopy({
+		  targets: [
+			{
+			  src: '/src/assets/',
+			  dest: '/assets'
+			}
+		  ]
+		})
+	  ],
+	publicDir: '/public/'
 });
+
