@@ -7,7 +7,6 @@ dns.setDefaultResultOrder('verbatim');
 
 export default defineConfig({
 	root: resolve(__dirname, 'src'),
-	// base: '/assets/',
 	build: {
 		outDir: '../dist',
 	},
@@ -15,16 +14,7 @@ export default defineConfig({
 		host: 'localhost',
 		port: 3000,
 	},
-	plugins: [
-		viteStaticCopy({
-		  targets: [
-			{
-			  src: '/src/assets/',
-			  dest: '/assets'
-			}
-		  ]
-		})
-	  ],
-	publicDir: '/public/'
+	publicDir: "../public"
+	
 });
 

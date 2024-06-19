@@ -4,6 +4,7 @@
     align-items: center;
     justify-content: space-between;
     height: 70px;
+    padding: 8px;
 }
 
 .search__input{
@@ -12,7 +13,7 @@
     margin-inline: 12px;
     border-radius: 35px;
     padding: $input-padding;
-    background: rgb(233, 232, 232);
+    background: rgb(243, 243, 247);
     outline: none;
     border: none;
 }
