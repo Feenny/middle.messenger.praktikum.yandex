@@ -20,7 +20,6 @@
     &__element:focus {
       border-color: $link-color;
       outline: 3px solid transparentize($color: $link-color, $amount: 0.8);
-      // background: #000;
     }
   }
   
