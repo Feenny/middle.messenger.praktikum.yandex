@@ -1,0 +1,6 @@
+@import '../../assets/variables';
+.avatar{
+    height: $settings-avatar-size;
+    width: $settings-avatar-size;
+    border-radius: $settings-avatar-radius;
+}

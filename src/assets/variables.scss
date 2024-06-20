@@ -76,4 +76,8 @@ $gray-light-color: #EFEFEF;
 
 $login-bgcolor: #FFFFFF;
 $login-bg-gradient: linear-gradient(20deg, #040D5A -10%, #D8E1EE 120%);;
-$registration-bg-gradient: linear-gradient(20deg, #344DA5 -10%, #DD8B50 120%);;
+$registration-bg-gradient: linear-gradient(20deg, #344DA5 -10%, #DD8B50 120%);
+
+
+$settings-avatar-size: 96px;
+$settings-avatar-radius: calc($settings-avatar-size / 2);

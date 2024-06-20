@@ -21,6 +21,9 @@ body {
 a {
   color: $link-color;
 }
+ul{
+  list-style:none;
+}
 
 button {
   font-size: inherit;

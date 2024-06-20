@@ -10,6 +10,9 @@ const pages: Pages = {
 	'chat': [ Pages.ChatPage ],
   'login': [ Pages.LoginPage ],
   'registration': [ Pages.RegistrationPage ],
+  'settings': [ Pages.SettingsPage ],
+  'error404': [ Pages.Error4Page ],
+  'error500': [ Pages.Error5Page ],
 };
 
 Object.entries(Components).forEach(([ name, component ]) => {
