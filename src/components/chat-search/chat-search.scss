@@ -16,6 +16,7 @@
     outline: none;
     border: none;
 }
+
 .search__input:hover{
     background-color: #E4E5E9;
 }
@@ -26,15 +27,13 @@
     position: absolute;
 }
 
+svg {
+    width: 25px;
+    height: 25px;
+  }
+
 .search__input_placeholder{
     left: $input-search-offset-left;
     position: absolute;
     color:$search-placeholder-color;
 }
-
-svg {
-    width: 25px;
-    height: 25px;
-  }
-  
-  
