@@ -1,4 +1,5 @@
 @import '../../assets/variables';
+
 .input {
     height: $input-height;
     margin-top: 8px;
@@ -22,5 +23,3 @@
       outline: 3px solid transparentize($color: $link-color, $amount: 0.8);
     }
   }
-  
-  
