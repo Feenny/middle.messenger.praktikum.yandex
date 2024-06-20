@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "server": "node server.js",
+    "start": "npm run build && npm run server",
     "preview": "vite preview"
   },
   "devDependencies": {
@@ -19,6 +21,7 @@
     "vite-plugin-static-copy": "^1.0.5"
   },
   "dependencies": {
+    "express": "^4.19.2",
     "vite-plugin-handlebars": "^2.0.0"
   }
 }
