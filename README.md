@@ -38,6 +38,3 @@ npm run build
 * Vite
 * TypeScript
 * Handlebars
-
-**Netlify:**
-* https://feenny-chat.netlify.app/ 
