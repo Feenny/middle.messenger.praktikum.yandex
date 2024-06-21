@@ -1,16 +1,17 @@
 {{#> Main page="registration"}}
-  {{#> SidebarImg sidebar-bg="/assets/registration-sidebar-bg.jpg"}}{{/ SidebarImg }}
+  {{#> SidebarImg sidebar-bg="/assets/registration-sidebar-bg.jpg" alt="Алиса в стране чудес"}}{{/ SidebarImg }}
   <section class="login-content">
   {{#> Dialog }}
     <form class="login-page">
       <div class="login-page__content">
         {{> PageTitle title="Регистрация" }}
         <div class="name-group">
-            {{> InputField className="login-page__input" title="Имя" name="name" }}
-            {{> InputField className="login-page__input" title="Фамилия" name="surname" }}
+            {{> InputField className="login-page__input" title="Имя" name="first_name" }}
+            {{> InputField className="login-page__input" title="Фамилия" name="second_name" }}
         </div>
-        {{> InputField className="login-page__input" title="Почта" name="login" }}
+        {{> InputField className="login-page__input" title="Почта" name="email" }}
         {{> InputField className="login-page__input" title="Логин" name="login" }}
+        {{> InputField className="login-page__input" title="Телефон" name="phone" }}
         {{> InputField className="login-page__input" title="Пароль" name="password" type="password" }}
         {{> InputField className="login-page__input" title="Повторите пароль" name="password" type="password" }}
       </div>

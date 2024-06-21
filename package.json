@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
-    "server": "node server.js",
+    "build": "vite build && tsc",
+    "server": "nodemon server.js",
     "start": "npm run build && npm run server",
     "preview": "vite preview"
   },
