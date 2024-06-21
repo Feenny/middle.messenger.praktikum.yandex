@@ -1,53 +1,51 @@
-@import '../../assets/variables';
+@import "../../assets/variables";
 
-.avatar{
-    position: relative;
-    height: $settings-avatar-size;
-    width: $settings-avatar-size;
-    
+.avatar {
+  position: relative;
+  height: $settings-avatar-size;
+  width: $settings-avatar-size;
+  }
+
+.avatar__img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: $settings-avatar-radius;
 }
 
-.avatar__img{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: $settings-avatar-radius;
-}
-
-.avatar__input{
-    z-index: 2;
-    opacity: 0;
-    width: 100%;
-    height: 100%;
+.avatar__input {
+  z-index: 2;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .avatar__input_container {
-    background: rgba(56, 56, 56, 0.541);
-    border-radius: $settings-avatar-radius;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: none;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .avatar__input_title {
-    color: $border-light-color;
-    position: absolute;
-    text-align: center;
-    top: 34px;
-    z-index: 1; 
-    display: none;
-  }
-  
-  .avatar:hover .avatar__input_container{
-    display: flex;
-  }
-  
-  .avatar:hover .avatar__input_title{
-    display: block;
-  }
-  
+  background: rgba(56, 56, 56, 0.541);
+  border-radius: $settings-avatar-radius;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+}
+
+.avatar__input_title {
+  color: $border-light-color;
+  position: absolute;
+  text-align: center;
+  top: 34px;
+  z-index: 1;
+  display: none;
+}
+
+.avatar:hover .avatar__input_container {
+  display: flex;
+}
+
+.avatar:hover .avatar__input_title {
+  display: block;
+}
