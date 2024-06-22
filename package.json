@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "vite build && tsc",
+    "server": "node server.js",
+    "start": "npm run build && npm run server",
     "preview": "vite preview"
   },
   "devDependencies": {
@@ -15,9 +17,15 @@
     "sass": "^1.77.5",
     "typescript": "^5.2.2",
     "vite": "^5.2.0",
-    "vite-plugin-sass": "^0.1.0"
+    "vite-plugin-sass": "^0.1.0",
+    "vite-plugin-static-copy": "^1.0.5"
   },
   "dependencies": {
+    "express": "^4.19.2",
     "vite-plugin-handlebars": "^2.0.0"
+  },
+  "engines" : { 
+    "npm" : ">=10.0.0",
+    "node" : ">=20.0.0"
   }
 }

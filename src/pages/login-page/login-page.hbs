@@ -1,5 +1,5 @@
 {{#> Main page="login"}}
-  {{#> SidebarImg sidebar-bg="../../assets/side-bar/login-sidebar-bg.jpg"}}{{/ SidebarImg }}
+  {{#> SidebarImg sidebar-bg="/assets/login-sidebar-bg.jpg" alt="Алиса в стране чудес"}}{{/ SidebarImg }}
   <section class="login-content">
   {{#> Dialog }}
     <form class="login-page">
@@ -13,6 +13,15 @@
         <p class="login-link"> Нет аккаунта?
           {{> Link text="Зарегистрироваться" page="registration" }}
         </p>
+        <nav class="navigation">
+          <ul class="navigation-list">
+            <li class="navigation-list_link">{{> Link text="Регистрация" page="registration" }}</li>
+            <li class="navigation-list_link">{{> Link text="Страница 404" page="error404" }}</li>
+            <li class="navigation-list_link">{{> Link text="Страница 500" page="error500" }}</li>
+            <li class="navigation-list_link">{{> Link text="Чат" page="chat" }}</li>
+            <li class="navigation-list_link">{{> Link text="Настройки пользователя" page="settings" }}</li>
+          </ul>
+        </nav>
       </div>
     </form>
   {{/ Dialog }}</section>

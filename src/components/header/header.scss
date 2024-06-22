@@ -1,4 +1,10 @@
 @import '../../assets/variables';
 
 .header {
+    display: flex;
+    flex-direction: row;
+    height: 56px;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: 16px;
 }
