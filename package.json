@@ -6,7 +6,12 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build && tsc",
-    "lint": "eslint . && npx stylelint \"**/*.scss\" && tsc --noEmit",
+    "lint:ts": "eslint \"**/*.{ts,tsx}\"",
+    "lint:ts:fix": "eslint \"**/*.{ts,tsx}\" --fix",
+    "lint:scss": "npx stylelint \"**/*.scss\"",
+    "lint:scss:fix": "npx stylelint \"**/*.scss\" --fix",
+    "lint": "lint:ts && lint:scss",
+    "lint:fix": "lint:ts:fix && lint:scss:fix",
     "server": "node server.js",
     "start": "npm run build && npm run server",
     "preview": "vite preview"
