@@ -8,6 +8,8 @@
     "build": "vite build && tsc",
     "lint": "eslint . --ext .ts,.tsx",
     "lint:fix": "eslint . --ext .ts,.tsx --fix",
+    "lint:css": "stylelint '**/*.css' '**/*.scss'",
+    "lint:css:fix": "stylelint '**/*.css' --fix",
     "server": "node server.js",
     "start": "npm run build && npm run server",
     "preview": "vite preview"
