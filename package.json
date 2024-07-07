@@ -6,10 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build && tsc",
-    "lint": "eslint . --ext .ts,.tsx",
-    "lint:fix": "eslint . --ext .ts,.tsx --fix",
-    "lint:css": "stylelint '**/*.css' '**/*.scss'",
-    "lint:css:fix": "stylelint '**/*.css' '**/*.scss --fix",
+    "lint": "eslint . && npx stylelint \"**/*.scss\" && tsc --noEmit",
     "server": "node server.js",
     "start": "npm run build && npm run server",
     "preview": "vite preview"
