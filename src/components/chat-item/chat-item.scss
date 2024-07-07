@@ -36,9 +36,9 @@
   }
 
   &__name {
+    font: $font-chat-name;
     line-height: 22px !important;
     vertical-align: middle;
-    font: $font-chat-name;
     grid-area: n;
     font-weight: $font-weight-semibold;
   }

@@ -10,6 +10,8 @@
   "ignoreFiles": [
     "./node_modules /**/*.css",
     "./dist /**/*.css",
-    "./coverage /**/*.css"
+    "./coverage /**/*.css",
+    "src/**/*",
+    "../src/**/*"
   ]
 }
