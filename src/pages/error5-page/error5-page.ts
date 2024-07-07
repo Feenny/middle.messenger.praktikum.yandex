@@ -1,16 +1,15 @@
-import Block from "../../tools/Block";
-import { ErrorContainer } from "../../components/error-container";
-import { Link } from "../../components/link";
-
+import Block from "../../tools/Block"
+import { ErrorContainer } from "../../components/error-container"
+import { Link } from "../../components/link"
 
 class Error5PageContent extends Block {
   render() {
-    return ErrorContainer;
+    return ErrorContainer
   }
 }
 class LinkComponent extends Block {
   render() {
-    return Link;
+    return Link
   }
 }
 
@@ -25,11 +24,11 @@ export class Error5Page extends Block {
           text: "Назад к чатам",
           page: "chat"
         })
-      }),
-    });
+      })
+    })
   }
 
   override render() {
-    return `{{{ errorPageContent }}}`;
+    return "{{{ errorPageContent }}}"
   }
 }

@@ -1,3 +1,3 @@
-import './input-field.scss';
+import "./input-field.scss"
 
-export { default as InputField } from './input-field.hbs?raw';
+export { default as InputField } from "./input-field.hbs?raw"

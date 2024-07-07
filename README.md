@@ -1,4 +1,4 @@
-**Название проекта:** 
+**Название проекта:**
 Middle.messenger.praktikum.yandex
 
 **Описание:**
@@ -7,41 +7,50 @@ Middle.messenger.praktikum.yandex
 **Установка:**
 
 # Установка зависимостей
+
 npm install
 
 # Запуск в режиме разработки
+
 npm run dev
 
 # Сборка для продакшена
+
 npm run build
 
 **Использование:**
-* Запустите приложение в режиме разработки или скомпилируйте его для продакшена.
-* Откройте браузер и перейдите по адресу `http://localhost:3000`.
-* Приложение отобразит простую форму логина с навигацией по готовым страницам приложения.
+
+- Запустите приложение в режиме разработки или скомпилируйте его для продакшена.
+- Откройте браузер и перейдите по адресу `http://localhost:3000`.
+- Приложение отобразит простую форму логина с навигацией по готовым страницам приложения.
 
 **ИЛИ**
-* Проект доступен на Netlify
+
+- Проект доступен на Netlify
 
 **Netlify:**
-* https://feenny-chat.netlify.app/ 
 
+- https://feenny-chat.netlify.app/
 
 **Страницы приложения:**
-* Переход по страницам осуществляется через навигационную панель на странице логина. На всех страницах реализован переход обратно к страницам логина или чата. 
-- [Логин](./src/pages/login-page/login-page.hbs)
-- [Регистрация](./src/pages/registration-page/registration-page.hbs)
-- [Чат](./src/pages/chat-page/chat-page.hbs)
-- [Настройки пользователя](./src/pages/settings-page/settings-page.hbs)
-- [Страница ошибки 404](./src/pages/error4-page/error4-page.hbs)
-- [Страница ошибки 5**](./src/pages/error5-page/error5-page.hbs)
+
+- Переход по страницам осуществляется через навигационную панель на странице логина. На всех страницах реализован переход обратно к страницам логина или чата.
+
+* [Логин](./src/pages/login-page/login-page.hbs)
+* [Регистрация](./src/pages/registration-page/registration-page.hbs)
+* [Чат](./src/pages/chat-page/chat-page.hbs)
+* [Настройки пользователя](./src/pages/settings-page/settings-page.hbs)
+* [Страница ошибки 404](./src/pages/error4-page/error4-page.hbs)
+* [Страница ошибки 5\*\*](./src/pages/error5-page/error5-page.hbs)
 
 **Особенности:**
-* Шаблонизация с использованием handlebars
-* Сборка с помощью Vite
-* Типизация с помощью TypeScript
+
+- Шаблонизация с использованием handlebars
+- Сборка с помощью Vite
+- Типизация с помощью TypeScript
 
 **Зависимости:**
-* Vite
-* TypeScript
-* Handlebars
+
+- Vite
+- TypeScript
+- Handlebars

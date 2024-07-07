@@ -1,13 +1,13 @@
-import Block from "../../tools/Block";
-import RegistrationPageTemplate from "./registration-page.hbs?raw";
-import "./registration-page.scss";
+import Block from "../../tools/Block"
+import RegistrationPageTemplate from "./registration-page.hbs?raw"
+import "./registration-page.scss"
 
-import { Button } from "../../components/button";
-import { Input } from "../../components/input";
-import { InputForm } from "../../components/input-form";
-import { InputField } from "../../components/input-field";
-import { Link } from "../../components/link";
-import { PageTitle } from "../../components";
+import { Button } from "../../components/button"
+import { Input } from "../../components/input"
+import { InputForm } from "../../components/input-form"
+import { InputField } from "../../components/input-field"
+import { Link } from "../../components/link"
+import { PageTitle } from "../../components"
 
 import {
   nameValidation,
@@ -15,48 +15,48 @@ import {
   checkValidate,
   passwordValidation,
   emailValidation,
-  phoneValidation,
-} from "../../tools/Validation";
+  phoneValidation
+} from "../../tools/Validation"
 
 class PageComponent extends Block {
   render() {
-    return PageTitle;
+    return PageTitle
   }
 }
 
 class ButtonComponent extends Block {
   render() {
-    return Button;
+    return Button
   }
 }
 
 class InputComponent extends Block {
   render() {
-    return Input;
+    return Input
   }
 }
 
 class InputFieldComponent extends Block {
   render() {
-    return InputField;
+    return InputField
   }
 }
 
 class InputFormComponent extends Block {
   render() {
-    return InputForm;
+    return InputForm
   }
 }
 
 class LinkComponent extends Block {
   render() {
-    return Link;
+    return Link
   }
 }
 
 class RegistrationTemplate extends Block {
   render() {
-    return RegistrationPageTemplate;
+    return RegistrationPageTemplate
   }
 }
 
@@ -69,11 +69,11 @@ const inputFirstName = new InputFieldComponent({
     type: "text",
     events: {
       blur: (event: Event) => {
-        checkValidate(event, nameValidation, "name");
-      },
-    },
-  }),
-});
+        checkValidate(event, nameValidation, "name")
+      }
+    }
+  })
+})
 
 const inputSecondName = new InputFieldComponent({
   className: "login-page__input",
@@ -84,11 +84,11 @@ const inputSecondName = new InputFieldComponent({
     type: "text",
     events: {
       blur: (event: Event) => {
-        checkValidate(event, nameValidation, "name");
-      },
-    },
-  }),
-});
+        checkValidate(event, nameValidation, "name")
+      }
+    }
+  })
+})
 
 const inputEmail = new InputFieldComponent({
   className: "login-page__input",
@@ -99,11 +99,11 @@ const inputEmail = new InputFieldComponent({
     type: "email",
     events: {
       blur: (event: Event) => {
-        checkValidate(event, emailValidation, "login");
-      },
-    },
-  }),
-});
+        checkValidate(event, emailValidation, "login")
+      }
+    }
+  })
+})
 
 const inputLogin = new InputFieldComponent({
   className: "login-page__input",
@@ -114,11 +114,11 @@ const inputLogin = new InputFieldComponent({
     type: "text",
     events: {
       blur: (event: Event) => {
-        checkValidate(event, loginValidation, "login");
-      },
-    },
-  }),
-});
+        checkValidate(event, loginValidation, "login")
+      }
+    }
+  })
+})
 
 const inputPhone = new InputFieldComponent({
   className: "login-page__input",
@@ -129,11 +129,11 @@ const inputPhone = new InputFieldComponent({
     type: "tel",
     events: {
       blur: (event: Event) => {
-        checkValidate(event, phoneValidation, "login");
-      },
-    },
-  }),
-});
+        checkValidate(event, phoneValidation, "login")
+      }
+    }
+  })
+})
 
 const inputPassword = new InputFieldComponent({
   className: "login-page__input",
@@ -144,11 +144,11 @@ const inputPassword = new InputFieldComponent({
     type: "password",
     events: {
       blur: (event: Event) => {
-        checkValidate(event, passwordValidation, "password");
-      },
-    },
-  }),
-});
+        checkValidate(event, passwordValidation, "password")
+      }
+    }
+  })
+})
 
 const inputRepeatPassword = new InputFieldComponent({
   className: "login-page__input",
@@ -159,15 +159,15 @@ const inputRepeatPassword = new InputFieldComponent({
     type: "password",
     events: {
       blur: (event: Event) => {
-        checkValidate(event, passwordValidation, "password");
-      },
-    },
-  }),
-});
+        checkValidate(event, passwordValidation, "password")
+      }
+    }
+  })
+})
 
 const inputFormContent = new InputFormComponent({
   PageTitle: new PageComponent({
-    title: "Регистрация",
+    title: "Регистрация"
   }),
   InputName: [inputFirstName, inputSecondName],
   InputContent: [
@@ -175,29 +175,30 @@ const inputFormContent = new InputFormComponent({
     inputLogin,
     inputPhone,
     inputPassword,
-    inputRepeatPassword,
+    inputRepeatPassword
   ],
   Button: new ButtonComponent({
     text: "Зарегистрироваться",
-    page: "chat",
+    page: "chat"
   }),
   questionText: "Есть аккаунт?",
   Link: new LinkComponent({
     text: "Войти",
-    page: "login",
-  }),
-});
+    page: "login"
+  })
+})
 
 export class RegistrationPage extends Block {
   constructor(props: { [key: string]: string }) {
     super({
       ...props,
       RegistrationTemplate: new RegistrationTemplate({
-        InputForm: inputFormContent,
-      }),
-    });
+        InputForm: inputFormContent
+      })
+    })
   }
+
   override render() {
-    return `{{{ RegistrationTemplate }}}`;
+    return "{{{ RegistrationTemplate }}}"
   }
 }

@@ -1,3 +1,3 @@
-import './registration-page.scss';
+import "./registration-page.scss"
 
-export {RegistrationPage as default} from './registration-page';
+export { RegistrationPage as default } from "./registration-page"

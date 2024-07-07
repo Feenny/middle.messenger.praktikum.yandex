@@ -1,13 +1,13 @@
-import Block from "../../tools/Block";
-import SettingsPageTemplate from "./settings-page.hbs?raw";
-import "./settings-page.scss";
+import Block from "../../tools/Block"
+import SettingsPageTemplate from "./settings-page.hbs?raw"
+import "./settings-page.scss"
 
-import { Avatar } from "../../components/avatar";
-import { Button } from "../../components/button";
-import { SettingsForm } from "../../components/settings-form";
-import { PageTitle } from "../../components/page-title";
-import { Input } from "../../components/input";
-import { InputField } from "../../components/input-field";
+import { Avatar } from "../../components/avatar"
+import { Button } from "../../components/button"
+import { SettingsForm } from "../../components/settings-form"
+import { PageTitle } from "../../components/page-title"
+import { Input } from "../../components/input"
+import { InputField } from "../../components/input-field"
 
 import {
   nameValidation,
@@ -15,46 +15,45 @@ import {
   checkValidate,
   passwordValidation,
   emailValidation,
-  phoneValidation,
-} from "../../tools/Validation";
-
+  phoneValidation
+} from "../../tools/Validation"
 
 class AvatarComponent extends Block {
   render() {
-    return Avatar;
+    return Avatar
   }
 }
 
 class SettingsTemplate extends Block {
   render() {
-    return SettingsPageTemplate;
+    return SettingsPageTemplate
   }
 }
 
 class ButtonComponent extends Block {
   render() {
-    return Button;
+    return Button
   }
 }
 class SettingsFormComponent extends Block {
   render() {
-    return SettingsForm;
+    return SettingsForm
   }
 }
 class PageComponent extends Block {
   render() {
-    return PageTitle;
+    return PageTitle
   }
 }
 
 class InputComponent extends Block {
   render() {
-    return Input;
+    return Input
   }
 }
 class InputFieldComponent extends Block {
   render() {
-    return InputField;
+    return InputField
   }
 }
 
@@ -65,11 +64,11 @@ export class SettingsPage extends Block {
       SettingsTemplate: new SettingsTemplate({
         SettingsForm: new SettingsFormComponent({
           PageTitle: new PageComponent({
-            title: "Евгения",
+            title: "Евгения"
           }),
           Avatar: new AvatarComponent({
-                        avatar: "/assets/avatar-settings.jpg",
-                      }),
+            avatar: "/assets/avatar-settings.jpg"
+          }),
           InputName: [
             new InputFieldComponent({
               className: "login-page__input",
@@ -80,10 +79,10 @@ export class SettingsPage extends Block {
                 type: "first_name",
                 events: {
                   blur: (event: Event) => {
-                    checkValidate(event, nameValidation, "name");
-                  },
-                },
-              }),
+                    checkValidate(event, nameValidation, "name")
+                  }
+                }
+              })
             }),
             new InputFieldComponent({
               className: "login-page__input",
@@ -94,11 +93,11 @@ export class SettingsPage extends Block {
                 type: "second_name",
                 events: {
                   blur: (event: Event) => {
-                    checkValidate(event, nameValidation, "name");
-                  },
-                },
-              }),
-            }),
+                    checkValidate(event, nameValidation, "name")
+                  }
+                }
+              })
+            })
           ],
           InputContent: [
             new InputFieldComponent({
@@ -110,10 +109,10 @@ export class SettingsPage extends Block {
                 type: "email",
                 events: {
                   blur: (event: Event) => {
-                    checkValidate(event, emailValidation, "login");
-                  },
-                },
-              }),
+                    checkValidate(event, emailValidation, "login")
+                  }
+                }
+              })
             }),
             new InputFieldComponent({
               className: "login-page__input",
@@ -124,10 +123,10 @@ export class SettingsPage extends Block {
                 type: "login",
                 events: {
                   blur: (event: Event) => {
-                    checkValidate(event, loginValidation, "login");
-                  },
-                },
-              }),
+                    checkValidate(event, loginValidation, "login")
+                  }
+                }
+              })
             }),
             new InputFieldComponent({
               className: "login-page__input",
@@ -138,10 +137,10 @@ export class SettingsPage extends Block {
                 type: "email",
                 events: {
                   blur: (event: Event) => {
-                    checkValidate(event, emailValidation, "login");
-                  },
-                },
-              }),
+                    checkValidate(event, emailValidation, "login")
+                  }
+                }
+              })
             }),
             new InputFieldComponent({
               className: "login-page__input",
@@ -152,27 +151,26 @@ export class SettingsPage extends Block {
                 type: "phone",
                 events: {
                   blur: (event: Event) => {
-                    checkValidate(event, phoneValidation, "phone");
-                  },
-                },
-              }),
+                    checkValidate(event, phoneValidation, "phone")
+                  }
+                }
+              })
             })
-        
-
-          ],
+          ]
         }),
         Button: new ButtonComponent({
           text: "Изменить данные",
           events: {
             submit: (event: Event) => {
-              checkValidate(event, phoneValidation, "phone");
-            },
-          },
-        }),
-      }),
-    });
+              checkValidate(event, phoneValidation, "phone")
+            }
+          }
+        })
+      })
+    })
   }
+
   override render() {
-    return `{{{ SettingsTemplate }}}`;
+    return "{{{ SettingsTemplate }}}"
   }
 }

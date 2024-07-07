@@ -5,12 +5,10 @@
 //   DELETE: 'DELETE',
 // };
 
-
 // function queryStringify(data) {
 //   if (typeof data !== 'object') {
 //     throw new Error('Data must be object');
 //   }
-
 
 //   const keys = Object.keys(data);
 //   return keys.reduce((result, key, index) => {
@@ -32,7 +30,7 @@
 //   return this.request(url, {...options, method: METHODS.PUT}, options.timeout);
 // };
 
-// delete = (url, options = {}) => { 
+// delete = (url, options = {}) => {
 //   return this.request(url, {...options, method: METHODS.DELETE}, options.timeout);
 // };
 
@@ -49,7 +47,7 @@
 //     const isGet = method === METHODS.GET;
 
 //     xhr.open(
-//       method, 
+//       method,
 //       isGet && !!data
 //       ? `${url}${queryStringify(data)}`
 //       : url,

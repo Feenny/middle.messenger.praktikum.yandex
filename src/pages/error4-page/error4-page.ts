@@ -1,23 +1,23 @@
-import Block from "../../tools/Block";
-import { ErrorContainer } from "../../components/error-container";
-import ErrorPageTemplate from "./error4-page.hbs?raw";
-import { Link } from "../../components/link";
+import Block from "../../tools/Block"
+import { ErrorContainer } from "../../components/error-container"
+import ErrorPageTemplate from "./error4-page.hbs?raw"
+import { Link } from "../../components/link"
 
 class Error4Template extends Block {
   render() {
-    return ErrorPageTemplate;
+    return ErrorPageTemplate
   }
 }
 
 class Error4PageContent extends Block {
   render() {
-    return ErrorContainer;
+    return ErrorContainer
   }
 }
 
 class LinkComponent extends Block {
   render() {
-    return Link;
+    return Link
   }
 }
 
@@ -31,13 +31,14 @@ export class Error4Page extends Block {
           desctiption: "беда",
           Link: new LinkComponent({
             text: "Назад к чатам",
-            page: "chat",
-          }),
-        }),
-      }),
-    });
+            page: "chat"
+          })
+        })
+      })
+    })
   }
+
   override render() {
-    return `{{{ errorTemplate }}}`;
+    return "{{{ errorTemplate }}}"
   }
 }

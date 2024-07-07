@@ -1,13 +1,13 @@
-@import '../../assets/variables';
+@import "../../assets/variables";
 
 @property --myColor1 {
-  syntax: '<color>';
+  syntax: "<color>";
   initial-value: $link-color;
   inherits: false;
 }
 
 @property --myColor2 {
-  syntax: '<color>';
+  syntax: "<color>";
   initial-value: $link-color-2;
   inherits: false;
 }
@@ -20,13 +20,16 @@
   border: 0;
   border-radius: 18px;
   color: $button-color;
-  background: linear-gradient(90deg,  var(--myColor1), var(--myColor2) 100%);
-  transition: --mycolor1 0.3s ease-in-out, --mycolor2 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  background: linear-gradient(90deg, var(--myColor1), var(--myColor2) 100%);
+  transition:
+    --mycolor1 0.3s ease-in-out,
+    --mycolor2 0.3s ease-in-out,
+    box-shadow 0.3s ease-in-out;
   margin-top: 40px;
   cursor: pointer;
 }
 
-.button:hover{
+.button:hover {
   --myColor1: #7481f5;
   --myColor2: #9c9cf8;
 

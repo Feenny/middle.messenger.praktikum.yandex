@@ -1,3 +1,3 @@
-import "./settings-item.scss";
+import "./settings-item.scss"
 
-export { default as SettingsItem } from "./settings-item.hbs?raw";
+export { default as SettingsItem } from "./settings-item.hbs?raw"

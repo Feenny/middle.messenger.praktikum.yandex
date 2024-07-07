@@ -1,59 +1,59 @@
-import LoginPageTemplate from "./login-page.hbs?raw";
-import "./login-page.scss";
-import Block from "../../tools/Block";
+import LoginPageTemplate from "./login-page.hbs?raw"
+import "./login-page.scss"
+import Block from "../../tools/Block"
 
-import { Button } from "../../components/button";
-import { Input } from "../../components/input";
-import { InputForm } from "../../components/input-form";
-import { InputField } from "../../components/input-field";
-import { Link } from "../../components/link";
-import { PageTitle } from "../../components";
+import { Button } from "../../components/button"
+import { Input } from "../../components/input"
+import { InputForm } from "../../components/input-form"
+import { InputField } from "../../components/input-field"
+import { Link } from "../../components/link"
+import { PageTitle } from "../../components"
 
 import {
   loginValidation,
   checkValidate,
-  passwordValidation,
-} from "../../tools/Validation";
+  passwordValidation
+} from "../../tools/Validation"
 
 class PageComponent extends Block {
   render() {
-    return PageTitle;
+    return PageTitle
   }
 }
 
 class ButtonComponent extends Block {
   render() {
-    return Button;
+    return Button
   }
 }
 
 class InputComponent extends Block {
   render() {
-    return Input;
+    return Input
   }
 }
 
 class InputFieldComponent extends Block {
   render() {
-    return InputField;
+    return InputField
   }
 }
 
 class InputFormComponent extends Block {
   render() {
-    return InputForm;
+    return InputForm
   }
 }
 
 class LinkComponent extends Block {
   render() {
-    return Link;
+    return Link
   }
 }
 
 class LoginTemplate extends Block {
   render() {
-    return LoginPageTemplate;
+    return LoginPageTemplate
   }
 }
 
@@ -65,11 +65,11 @@ const inputLogin = new InputFieldComponent({
     type: "text",
     events: {
       blur: (evt: Event) => {
-        checkValidate(evt, loginValidation, "login");
-      },
-    },
-  }),
-});
+        checkValidate(evt, loginValidation, "login")
+      }
+    }
+  })
+})
 
 const inputPassword = new InputFieldComponent({
   title: "Пароль",
@@ -79,38 +79,39 @@ const inputPassword = new InputFieldComponent({
     type: "password",
     events: {
       blur: (event: Event) => {
-        checkValidate(event, passwordValidation, "password");
-      },
-    },
-  }),
-});
+        checkValidate(event, passwordValidation, "password")
+      }
+    }
+  })
+})
 
 const inputFormContent = new InputFormComponent({
   PageTitle: new PageComponent({
-    title: "Вход",
+    title: "Вход"
   }),
   InputContent: [inputLogin, inputPassword],
   Button: new ButtonComponent({
     text: "Войти",
-    page: "chat",
+    page: "chat"
   }),
   questionText: "Нет аккаунта?",
   Link: new LinkComponent({
     text: "Зарегистрироваться",
-    page: "registration",
-  }),
-});
+    page: "registration"
+  })
+})
 
 export class LoginPage extends Block {
   constructor(props: { [key: string]: string }) {
     super({
       ...props,
       loginTemplate: new LoginTemplate({
-        InputForm: inputFormContent,
-      }),
-    });
+        InputForm: inputFormContent
+      })
+    })
   }
+
   override render() {
-    return `{{{ loginTemplate }}}`;
+    return "{{{ loginTemplate }}}"
   }
 }
