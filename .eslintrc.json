@@ -26,6 +26,8 @@
         "ignoreRestSiblings": true
       }
     ],
+    "no-var": "error",
+    "quotes": ["warn", "double"],
     "@typescript-eslint/semi": "off",
     "indent": ["error", 4],
     "no-use-before-define": "off",
