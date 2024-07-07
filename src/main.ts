@@ -35,12 +35,10 @@ export function navigate(page: string) {
 
 document.addEventListener('DOMContentLoaded', () => navigate('settings'))
 
-console.log('loaded')
 document.addEventListener('click', (e) => {
     const target = e.target as HTMLElement
     const page = target.getAttribute('page')
     if (page) {
-        console.log(`page ${page}`)
         navigate(page)
         e.preventDefault()
         e.stopImmediatePropagation()

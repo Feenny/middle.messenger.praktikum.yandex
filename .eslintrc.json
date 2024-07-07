@@ -41,11 +41,14 @@
       "warn",
       {
         "ignoreComments": true,
-        "code": 200
+        "code": 500
       }
     ],
     "no-param-reassign": "warn",
     "no-undef": "warn",
-    "no-useless-constructor": "off"
+    "no-useless-constructor": "off",
+    "max-classes-per-file": "off",
+    "no-restricted-exports": "off"
+
   }
 }
