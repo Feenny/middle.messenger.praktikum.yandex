@@ -10,9 +10,10 @@ export function checkValidate(
     console.log('check validate')
     const input = event.target as HTMLTextAreaElement
     const { value } = input
-    result = 'singlequotes';
     // validationResults[result] = functionName(value);
-
+    if (result === '123') {
+        input.classList.remove('invalid')
+    }
     if (functionName(value)) {
         input.classList.remove('invalid')
     // (input.nextElementSibling as HTMLDivElement).textContent = "";
