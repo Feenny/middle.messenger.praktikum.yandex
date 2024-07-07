@@ -32,6 +32,7 @@ class InputComponent extends Block {
     return Input;
   }
 }
+
 class InputFieldComponent extends Block {
   render() {
     return InputField;
@@ -43,6 +44,7 @@ class InputFormComponent extends Block {
     return InputForm;
   }
 }
+
 class LinkComponent extends Block {
   render() {
     return Link;
@@ -112,4 +114,3 @@ export class LoginPage extends Block {
     return `{{{ loginTemplate }}}`;
   }
 }
-
