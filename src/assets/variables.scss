@@ -1,35 +1,28 @@
-$font-body: Inter,"Segoe UI","Roboto","Helvetica Neue",sans-sans;
-
+$font-body: inter,"Segoe UI","Roboto","Helvetica Neue",sans-sans;
 $font-weight-regular: 500;
 $font-weight-semibold: 600;
 $font-weight-bold: 700;
-
 $font-large: #{$font-weight-regular} 40px/40px #{$font-body};
 $font-title: #{$font-weight-bold} 28px/28px #{$font-body};
 $font-big: #{$font-weight-regular} 24px/24px #{$font-body};
 $font-chat-name: #{$font-weight-regular} 16px/16px #{$font-body};
-$font-chat-message:  16px/16px #{$font-body};
+$font-chat-message: 16px/16px #{$font-body};
 $font-button: #{$font-weight-semibold} 16px/16px #{$font-body};
 $font-regular: #{$font-weight-regular} 14px/14px #{$font-body};
 $font-small: #{$font-weight-regular} 12px/12px #{$font-body};
 $font-micro: #{$font-weight-regular} 11px/11px #{$font-body};
 $font-nano: #{$font-weight-regular} 9px/9px #{$font-body};
-
-
 $border-light-color: #e1e1f5;
-
 $text-bgcolor: #FFF;
 $primary-text-color-rgb: 0, 0, 0;
 $secondary-text-color: #707579;
 $text-color: #000;
 $text-light-color: #8d8f9b;
-$text-red: #FF0000;
-
+$text-red: #F00;
 $link-color: #9B9BDF;
 $link-color-2: #6E7AE7;
-$error-color:  rgb(190, 47, 66);
+$error-color: rgb(190 47 66);
 $title-color: #414888;
-
 $button-color: #FFF;
 $button-bgcolor: linear-gradient(90deg, $link-color 0%, $link-color-2 100%);;
 
@@ -37,22 +30,16 @@ $input-padding: 8px 16px;
 $input-height: 44px;
 $input-border-radius: 12px;
 $input-search-offset-left: 42px;
-
 $search-placeholder-color: #A4A5AF;
 $search-placeholder-color-hover: #818C99;
 
 
-
-
 $menu-button-color: #{$button-bgcolor};
 $menu-button-bgcolor: #F5F5F5;
-
 $menu-font: #{$font-weight-regular} 12px/14px #{$font-body};
 $menu-bgcolor: #{$text-bgcolor};
-$menu-shadow: 0px 0px 6px #1e147733;
-
+$menu-shadow: 0 0 6px #1e147733;
 $divider-line-color: #EAEAEA;
-
 $chat-list-bgcolor: #FBFBFB;
 $chat-list-current-bgcolor: #E4EDFD;
 $chat-list-width: 45vh;
@@ -65,20 +52,14 @@ $chat-message-inverse-bgcolor: #52525280;
 $chat-message-my-bgcolor: #E4EDFD;
 $chat-message-my-color: #{$chat-message-color};
 $chat-message-my-time-color: #{$button-bgcolor};
-
 $dialog-bgcolor: #{$text-bgcolor};
 $dialog-shadow: #{$menu-shadow};
-
-$dialog-modal-overlay-bgcolor: #00000066;
+$dialog-modal-overlay-bgcolor: #0006;
 $dialog-modal-content-shadow: #{$menu-shadow};
 $dialog-modal-title: #{$font-weight-regular} 15px/20px #{$font-body};
-
 $gray-light-color: #EFEFEF;
-
-$login-bgcolor: #FFFFFF;
+$login-bgcolor: #FFF;
 $login-bg-gradient: linear-gradient(20deg, #040D5A -10%, #D8E1EE 120%);;
 $registration-bg-gradient: linear-gradient(20deg, #344DA5 -10%, #DD8B50 120%);
-
-
 $settings-avatar-size: 96px;
 $settings-avatar-radius: calc($settings-avatar-size / 2);
