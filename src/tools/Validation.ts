@@ -10,7 +10,7 @@ export function checkValidate(
     console.log('check validate')
     const input = event.target as HTMLTextAreaElement
     const { value } = input
-
+    result = 'singlequotes';
     // validationResults[result] = functionName(value);
 
     if (functionName(value)) {

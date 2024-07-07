@@ -73,7 +73,7 @@ export default class Block {
         })
     }
 
-    componentDidMount(oldProps?: IProps) {}
+    componentDidMount() {}
 
     dispatchComponentDidMount() {
         this.eventBus().emit(Block.EVENTS.FLOW_CDM)

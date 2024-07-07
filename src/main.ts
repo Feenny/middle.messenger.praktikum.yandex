@@ -6,7 +6,6 @@ import { LoginPage } from './pages/login-page/login-page'
 import { RegistrationPage } from './pages/registration-page/registration-page'
 import { ChatPage } from './pages/chat-page/chat-page'
 import { SettingsPage } from './pages/settings-page/settings-page'
-import Block from './tools/Block'
 
 const loginPage = new LoginPage({})
 const registrationPage = new RegistrationPage({})

@@ -13,7 +13,6 @@ import {
     nameValidation,
     loginValidation,
     checkValidate,
-    passwordValidation,
     emailValidation,
     phoneValidation,
 } from '../../tools/Validation'
