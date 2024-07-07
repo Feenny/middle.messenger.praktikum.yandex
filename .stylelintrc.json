@@ -6,13 +6,5 @@
     "selector-class-pattern": null,
     "scss/no-global-function-names": null
   },
-  "ignoreFiles": [
-    "./node_modules /**/*.css",
-    "./dist /**/*.css",
-    "./coverage /**/*.css",
-    "build/**/*",
-    "dist/**/*",
-    "../dist/**/*",
-    "node_modules/**/*"
-  ]
+  "ignoreFiles": ["**/*"]
 }
