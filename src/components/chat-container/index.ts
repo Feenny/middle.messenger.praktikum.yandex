@@ -1,3 +1,3 @@
-import "./chat-container.scss"
+import './chat-container.scss'
 
-export { default as ChatContainer } from "./chat-container.hbs?raw"
+export { default as ChatContainer } from './chat-container.hbs?raw'

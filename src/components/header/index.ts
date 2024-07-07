@@ -1,3 +1,3 @@
-import "./header.scss"
+import './header.scss'
 
-export { default as Header } from "./header.hbs?raw"
+export { default as Header } from './header.hbs?raw'

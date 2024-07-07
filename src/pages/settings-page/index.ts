@@ -1,3 +1,3 @@
-import "./settings-page.scss"
+import './settings-page.scss'
 
-export { SettingsPage as default } from "./settings-page"
+export { SettingsPage as default } from './settings-page'

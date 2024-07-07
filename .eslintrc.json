@@ -27,7 +27,7 @@
       }
     ],
     "no-var": "error",
-    "quotes": ["warn", "double"],
+    "quotes": ["warn", "single"],
     "@typescript-eslint/semi": "off",
     "indent": ["error", 4],
     "no-use-before-define": "off",
