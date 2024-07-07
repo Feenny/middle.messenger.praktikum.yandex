@@ -58,7 +58,7 @@ export default class Block {
     _registerEvents(eventBus: EventBus) {
         eventBus.on(Block.EVENTS.INIT, this.init.bind(this))
         eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this))
-        eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this))
+        // eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this))
         eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this))
     }
 
@@ -67,7 +67,7 @@ export default class Block {
     }
 
     _componentDidMount() {
-        this.componentDidMount()
+        // this.componentDidMount()
         Object.values(this.children).forEach((child) => {
             child.dispatchComponentDidMount()
         })
@@ -79,17 +79,17 @@ export default class Block {
         this.eventBus().emit(Block.EVENTS.FLOW_CDM)
     }
 
-    _componentDidUpdate(oldProps: IProps, newProps: IProps) {
-        const response = this.componentDidUpdate(oldProps, newProps)
-        if (!response) {
-            return
-        }
-        this._render()
-    }
+    // _componentDidUpdate(oldProps: IProps, newProps: IProps) {
+    //     const response = this.componentDidUpdate(oldProps, newProps)
+    //     if (!response) {
+    //         return
+    //     }
+    //     this._render()
+    // }
 
-    componentDidUpdate(oldProps: IProps, newProps: IProps) {
-        return true
-    }
+    // componentDidUpdate(oldProps: IProps, newProps: IProps) {
+    //     return true
+    // }
 
     _getChildrenPropsAndProps(propsAndChildren: IProps) {
         const props: Record<string, unknown> = {}
@@ -137,7 +137,7 @@ export default class Block {
             propsAndStubs[key] = `<div data-id="${child._id}"></div>`
         })
 
-        Object.entries(this.lists).forEach(([key, child]) => {
+        Object.entries(this.lists).forEach(([key, __]) => {
             propsAndStubs[key] = `<div data-id="__l_${_tmpId}"></div>`
         })
 
@@ -151,7 +151,7 @@ export default class Block {
             stub?.replaceWith(child.getContent())
         })
 
-        Object.entries(this.lists).forEach(([key, child]) => {
+        Object.entries(this.lists).forEach(([__, child]) => {
             const listCont = this._createDocumentElement(
                 'template',
             ) as HTMLTemplateElement
