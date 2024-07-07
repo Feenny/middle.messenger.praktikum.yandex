@@ -1,5 +1,5 @@
 import Block from "../../tools/Block";
-import  RegistrationPageTemplate   from "./registration-page.hbs?raw";
+import RegistrationPageTemplate from "./registration-page.hbs?raw";
 import "./registration-page.scss";
 
 import { Button } from "../../components/button";
@@ -15,7 +15,7 @@ import {
   checkValidate,
   passwordValidation,
   emailValidation,
-  phoneValidation
+  phoneValidation,
 } from "../../tools/Validation";
 
 class PageComponent extends Block {
@@ -35,6 +35,7 @@ class InputComponent extends Block {
     return Input;
   }
 }
+
 class InputFieldComponent extends Block {
   render() {
     return InputField;
@@ -46,6 +47,7 @@ class InputFormComponent extends Block {
     return InputForm;
   }
 }
+
 class LinkComponent extends Block {
   render() {
     return Link;
@@ -168,7 +170,13 @@ const inputFormContent = new InputFormComponent({
     title: "Регистрация",
   }),
   InputName: [inputFirstName, inputSecondName],
-  InputContent: [inputEmail, inputLogin,inputPhone, inputPassword, inputRepeatPassword ],
+  InputContent: [
+    inputEmail,
+    inputLogin,
+    inputPhone,
+    inputPassword,
+    inputRepeatPassword,
+  ],
   Button: new ButtonComponent({
     text: "Зарегистрироваться",
     page: "chat",
@@ -181,17 +189,15 @@ const inputFormContent = new InputFormComponent({
 });
 
 export class RegistrationPage extends Block {
-    constructor(props: { [key: string]: string }) {
-      super({
-        ...props,
-        RegistrationTemplate: new RegistrationTemplate({
-          InputForm: inputFormContent
-        })
-      });
-    }
-    override render() {
-      return `{{{ RegistrationTemplate }}}`;
-    }
+  constructor(props: { [key: string]: string }) {
+    super({
+      ...props,
+      RegistrationTemplate: new RegistrationTemplate({
+        InputForm: inputFormContent,
+      }),
+    });
   }
-  
-  
+  override render() {
+    return `{{{ RegistrationTemplate }}}`;
+  }
+}
