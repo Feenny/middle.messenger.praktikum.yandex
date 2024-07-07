@@ -1,6 +1,6 @@
 import Block from "../../tools/Block";
 import { ErrorContainer } from "../../components/error-container";
-import ErrorPageTemplate  from "./error4-page.hbs?raw"
+import ErrorPageTemplate from "./error4-page.hbs?raw";
 import { Link } from "../../components/link";
 
 class Error4Template extends Block {
@@ -31,14 +31,13 @@ export class Error4Page extends Block {
           desctiption: "беда",
           Link: new LinkComponent({
             text: "Назад к чатам",
-            page: "chat"
-          })
+            page: "chat",
+          }),
         }),
-      })
+      }),
     });
   }
   override render() {
     return `{{{ errorTemplate }}}`;
   }
 }
-

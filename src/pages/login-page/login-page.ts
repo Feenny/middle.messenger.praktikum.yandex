@@ -112,3 +112,4 @@ export class LoginPage extends Block {
     return `{{{ loginTemplate }}}`;
   }
 }
+
