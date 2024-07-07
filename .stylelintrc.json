@@ -12,6 +12,7 @@
     "./coverage /**/*.css",
     "build/**/*",
     "dist/**/*",
+    "../dist/**/*",
     "node_modules/**/*"
   ]
 }
