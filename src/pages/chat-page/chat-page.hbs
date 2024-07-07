@@ -1,12 +1,13 @@
-{{#> Main}}
-<div class="chat-page">
-{{#> Header}}{{/ Header}}
-  {{#> ChatList className="chat-page__list" }}
-    {{#each (chat-page-list)}}
-      {{> ChatItem }}
-    {{/each}}
-  {{/ ChatList }}
-  {{> Link page="LoginPage" text="Назад к логину"}}
-</div>
-{{#> ChatContainer}}{{/ ChatContainer}}
-{{/ Main}}
+<main class="main">
+  <div class="chat-page">
+    {{{Header}}}
+    {{{ChatList}}}
+    {{!-- {{#> ChatList className="chat-page__list" }} --}}
+    {{{ChatList}}}
+    <a href="" class="link" page="login">Назад к логину</a>
+    {{!-- {{> Link page="LoginPage" text="Назад к логину"}} --}}
+  </div>
+  {{{ChatContainer}}}
+  {{!-- {{#> ChatContainer}}{{/ ChatContainer}} --}}
+  {{{ChatContainer}}}
+</main>

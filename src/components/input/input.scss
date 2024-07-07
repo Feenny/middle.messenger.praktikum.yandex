@@ -21,5 +21,12 @@
     &__element:focus {
       border-color: $link-color;
       outline: 3px solid transparentize($color: $link-color, $amount: 0.8);
+
+      &.invalid {
+        border-color: $error-color;
+        outline: 3px solid transparentize($color: $error-color, $amount: 0.8);
+      }
     }
   }
+
+  

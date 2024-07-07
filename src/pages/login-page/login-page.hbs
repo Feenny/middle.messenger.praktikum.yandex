@@ -1,28 +1,14 @@
-{{#> Main page="login"}}
-  {{#> SidebarImg sidebar-bg="/assets/login-sidebar-bg.jpg" alt="Алиса в стране чудес"}}{{/ SidebarImg }}
+{{!-- {{#> Main page="login"}} --}}
+<main class="main">
+
+
+
+{{{ SidebarImg }}}
+  {{!-- {{#> SidebarImg sidebar-bg="/assets/login-sidebar-bg.jpg" alt="Алиса в стране чудес"}}{{/ SidebarImg }} --}}
   <section class="login-content">
-  {{#> Dialog }}
-    <form class="login-page">
-      <div class="login-page__content">
-        {{> PageTitle title="Вход" }}
-        {{> InputField className="login-page__input" title="Логин" name="login" }}
-        {{> InputField className="login-page__input" title="Пароль" name="password" type="password" }}
+      <div class="dialog">
+      {{{ InputForm }}}
       </div>
-      <div class="login-page__footer">
-        {{> Button text="Войти" page="chat" }}
-        <p class="login-link"> Нет аккаунта?
-          {{> Link text="Зарегистрироваться" page="registration" }}
-        </p>
-        <nav class="navigation">
-          <ul class="navigation-list">
-            <li class="navigation-list_link">{{> Link text="Регистрация" page="registration" }}</li>
-            <li class="navigation-list_link">{{> Link text="Страница 404" page="error404" }}</li>
-            <li class="navigation-list_link">{{> Link text="Страница 500" page="error500" }}</li>
-            <li class="navigation-list_link">{{> Link text="Чат" page="chat" }}</li>
-            <li class="navigation-list_link">{{> Link text="Настройки пользователя" page="settings" }}</li>
-          </ul>
-        </nav>
-      </div>
-    </form>
-  {{/ Dialog }}</section>
-{{/ Main}}
+  </section>
+{{!-- {{/ Main}} --}}
+</main>

@@ -1,12 +1,33 @@
-.settings-container{
-    width: 100%;
+.settings-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.exit {
+  color: red;
+}
+
+.navigation {
+  width: 380px;
+
+  &-list {
+    padding: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 10px
+  }
 }
 
-.exit{
-    color: red;
+.name-group {
+  display: flex;
+  justify-content: space-between;
 }
 
+div.name-group .login-page__input {
+  width: 48%;
+}

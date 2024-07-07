@@ -1,4 +1,4 @@
-@import '../../assets/variables';
+@import "../../assets/variables";
 
 .chat-item {
   &__line {
@@ -9,7 +9,6 @@
   }
 
   &__block {
-    
     height: 70px;
     width: 100%;
     display: grid;
@@ -56,7 +55,6 @@
   }
 
   &__message-text {
-    
     font: $font-chat-message;
     margin-top: 4px;
     display: -webkit-box;
@@ -82,7 +80,10 @@
   }
 }
 
+.chat-item:hover {
+  background-color: #f3f3f4;
+}
 
-.chat-item:hover{
-  background-color: #F3F3F4;
+.chat-item__active {
+  background-color: #edf0ff;
 }
