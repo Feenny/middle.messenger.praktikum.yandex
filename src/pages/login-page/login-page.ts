@@ -9,7 +9,6 @@ import { InputField } from "../../components/input-field";
 import { Link } from "../../components/link";
 import { PageTitle } from "../../components";
 
-
 import {
   loginValidation,
   checkValidate,
@@ -84,7 +83,6 @@ const inputPassword = new InputFieldComponent({
   }),
 });
 
-
 const inputFormContent = new InputFormComponent({
   PageTitle: new PageComponent({
     title: "Вход",
@@ -100,7 +98,6 @@ const inputFormContent = new InputFormComponent({
     page: "registration",
   }),
 });
-
 
 export class LoginPage extends Block {
   constructor(props: { [key: string]: string }) {
