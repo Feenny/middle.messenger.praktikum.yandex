@@ -114,7 +114,7 @@ const inputFormContent = new InputFormComponent({
     }),
     events: {
         submit: (event: Event) => {
-            formValidate(event)
+            formValidate(event);
         },
     },
 });
@@ -136,9 +136,4 @@ export class LoginPage extends Block {
     override render() {
         return '{{{ loginTemplate }}}';
     }
-}
-
-function checkForm(evt: Event) {
-    evt.preventDefault();
-    console.log('перемога буде ура');
 }
