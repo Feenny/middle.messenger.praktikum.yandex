@@ -16,14 +16,13 @@
     &--align-right {
       text-align: right;
     }
-    
+
     &.invalid {
       border-color: $error-color;
       background-color: #ffb1bc1c;
       outline: 3px solid transparentize($color: $error-color, $amount: 0.8);
     }
   }
-
 
   &__element:focus {
     border-color: $link-color;
