@@ -52,6 +52,7 @@ export default class Block {
         const { events = {} } = this.props
         Object.keys(events).forEach((eventName) => {
             this._element?.removeEventListener(eventName, events[eventName])
+            console.log(`event removed: ${eventName}`)
         })
     }
 
@@ -130,6 +131,7 @@ export default class Block {
     }
 
     _render() {
+        this._removeEvents()
         console.log('Render')
         const propsAndStubs: IProps = { ...this.props }
         const _tmpId = Math.floor(100000 + Math.random() * 900000)

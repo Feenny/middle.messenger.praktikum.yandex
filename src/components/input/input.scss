@@ -1,7 +1,7 @@
 @import "../../assets/variables";
 
 .input {
-  height: $input-height;
+  // height: $input-height;
   margin-top: 8px;
 
   &__element {
@@ -9,14 +9,21 @@
     border-radius: $input-border-radius;
     padding: $input-padding;
     width: 100%;
-    height: 100%;
+    height: $input-height;
     box-sizing: border-box;
     font: inherit;
 
     &--align-right {
       text-align: right;
     }
+    
+    &.invalid {
+      border-color: $error-color;
+      background-color: #ffb1bc1c;
+      outline: 3px solid transparentize($color: $error-color, $amount: 0.8);
+    }
   }
+
 
   &__element:focus {
     border-color: $link-color;

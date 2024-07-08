@@ -1,8 +1,18 @@
 @import "../../assets/variables";
 
 .input-field {
+  height: 84px;
+  display: flex;
+  flex-direction: column;
+  // justify-content: ri;
   &__title {
     font: $font-regular;
     color: $title-color;
   }
+}
+
+.input__error-message{
+  font-size: 12px;
+  margin-top: 4px;
+  color: $error-message-color;
 }

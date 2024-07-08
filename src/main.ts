@@ -32,7 +32,7 @@ export function navigate(page: string) {
     container.replaceChildren(block.getContent())
 }
 
-document.addEventListener('DOMContentLoaded', () => navigate('settings'))
+document.addEventListener('DOMContentLoaded', () => navigate('login'))
 
 document.addEventListener('click', (e) => {
     const target = e.target as HTMLElement

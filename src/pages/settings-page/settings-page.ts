@@ -15,6 +15,7 @@ import {
     checkValidate,
     emailValidation,
     phoneValidation,
+    passwordValidation,
 } from '../../tools/Validation'
 
 class AvatarComponent extends Block {
@@ -70,6 +71,7 @@ export class SettingsPage extends Block {
                     }),
                     InputName: [
                         new InputFieldComponent({
+                            errorMessage: 'Имя введено некорректно',
                             className: 'login-page__input',
                             title: 'Имя',
                             Input: new InputComponent({
@@ -84,6 +86,7 @@ export class SettingsPage extends Block {
                             }),
                         }),
                         new InputFieldComponent({
+                            errorMessage: 'Фамилия введена некорректно',
                             className: 'login-page__input',
                             title: 'Фамилия',
                             Input: new InputComponent({
@@ -100,6 +103,7 @@ export class SettingsPage extends Block {
                     ],
                     InputContent: [
                         new InputFieldComponent({
+                            errorMessage: 'Пароль должен содержать заглавную, цифру, от 8 до 40 символов',
                             className: 'login-page__input',
                             title: 'Пароль',
                             Input: new InputComponent({
@@ -108,12 +112,13 @@ export class SettingsPage extends Block {
                                 type: 'email',
                                 events: {
                                     blur: (event: Event) => {
-                                        checkValidate(event, emailValidation, 'login')
+                                        checkValidate(event, passwordValidation, 'login')
                                     },
                                 },
                             }),
                         }),
                         new InputFieldComponent({
+                            errorMessage: 'Логин должен включать латиницу, от 3 до 20 символов',
                             className: 'login-page__input',
                             title: 'Логин',
                             Input: new InputComponent({
@@ -128,6 +133,7 @@ export class SettingsPage extends Block {
                             }),
                         }),
                         new InputFieldComponent({
+                            errorMessage: 'Почта должна быть в формате example@gmail.com',
                             className: 'login-page__input',
                             title: 'Почта',
                             Input: new InputComponent({
@@ -142,6 +148,7 @@ export class SettingsPage extends Block {
                             }),
                         }),
                         new InputFieldComponent({
+                            errorMessage: 'Телефон может состоять из цифр и +, от 10 до 15 символов',
                             className: 'login-page__input',
                             title: 'Телефон',
                             Input: new InputComponent({

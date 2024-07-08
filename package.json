@@ -17,6 +17,17 @@
     "start": "npm run build && npm run server",
     "preview": "vite preview"
   },
+  "prettier": {
+    "overrides": [
+      {
+        "files": "*.ts",
+        "options": {
+          "tabWidth": 4,
+          "singleQuote": true
+        }
+      }
+    ]
+  },
   "devDependencies": {
     "@eslint/js": "^9.6.0",
     "@types/node": "^20.14.2",

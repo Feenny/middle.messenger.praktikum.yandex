@@ -1,63 +1,72 @@
-import LoginPageTemplate from './login-page.hbs?raw'
-import './login-page.scss'
-import Block from '../../tools/Block'
+import LoginPageTemplate from './login-page.hbs?raw';
+import './login-page.scss';
+import Block from '../../tools/Block';
 
-import { Button } from '../../components/button'
-import { Input } from '../../components/input'
-import { InputForm } from '../../components/input-form'
-import { InputField } from '../../components/input-field'
-import { Link } from '../../components/link'
-import { PageTitle } from '../../components'
+import { Button } from '../../components/button';
+import { Input } from '../../components/input';
+import { InputForm } from '../../components/input-form';
+import { InputField } from '../../components/input-field';
+import { Link } from '../../components/link';
+import { PageTitle } from '../../components';
+import { SidebarImg } from '../../components/sidebar-img';
 
 import {
     loginValidation,
     checkValidate,
     passwordValidation,
-} from '../../tools/Validation'
+    formValidate,
+} from '../../tools/Validation';
 
 class PageComponent extends Block {
     render() {
-        return PageTitle
+        return PageTitle;
     }
 }
 
 class ButtonComponent extends Block {
     render() {
-        return Button
+        return Button;
     }
 }
 
 class InputComponent extends Block {
     render() {
-        return Input
+        return Input;
     }
 }
 
 class InputFieldComponent extends Block {
     render() {
-        return InputField
+        return InputField;
     }
 }
 
 class InputFormComponent extends Block {
     render() {
-        return InputForm
+        return InputForm;
     }
 }
 
 class LinkComponent extends Block {
     render() {
-        return Link
+        return Link;
+    }
+}
+
+class SideBarImgComponent extends Block {
+    render() {
+        return SidebarImg;
     }
 }
 
 class LoginTemplate extends Block {
     render() {
-        return LoginPageTemplate
+        return LoginPageTemplate;
     }
 }
 
 const inputLogin = new InputFieldComponent({
+    errorMessage: 'Логин должен включать латиницу, от 3 до 20 символов',
     title: 'Логин',
     Input: new InputComponent({
         name: 'login',
@@ -65,13 +74,16 @@ const inputLogin = new InputFieldComponent({
         type: 'text',
         events: {
             blur: (evt: Event) => {
-                checkValidate(evt, loginValidation, 'login')
+                checkValidate(evt, loginValidation, 'login');
             },
         },
     }),
-})
+});
 
 const inputPassword = new InputFieldComponent({
+    errorMessage:
+        'Пароль должен содержать заглавную букву, цифру, быть от 8 до 40 символов',
+    className: 'login-page__input',
     title: 'Пароль',
     Input: new InputComponent({
         name: 'password',
@@ -79,11 +91,11 @@ const inputPassword = new InputFieldComponent({
         type: 'password',
         events: {
             blur: (event: Event) => {
-                checkValidate(event, passwordValidation, 'password')
+                checkValidate(event, passwordValidation, 'password');
             },
         },
     }),
-})
+});
 
 const inputFormContent = new InputFormComponent({
     PageTitle: new PageComponent({
@@ -91,6 +103,7 @@ const inputFormContent = new InputFormComponent({
     }),
     InputContent: [inputLogin, inputPassword],
     Button: new ButtonComponent({
+        type: 'submit',
         text: 'Войти',
         page: 'chat',
     }),
@@ -99,19 +112,33 @@ const inputFormContent = new InputFormComponent({
         text: 'Зарегистрироваться',
         page: 'registration',
     }),
-})
+    events: {
+        submit: (event: Event) => {
+            formValidate(event)
+        },
+    },
+});
 
 export class LoginPage extends Block {
     constructor(props: { [key: string]: string }) {
         super({
             ...props,
             loginTemplate: new LoginTemplate({
+                SidebarImg: new SideBarImgComponent({
+                    sidebarBgPath: '/assets/login-sidebar-bg.jpg',
+                    alt: 'Фоновая картинка: Девушка в коробке',
+                }),
                 InputForm: inputFormContent,
             }),
-        })
+        });
     }
 
     override render() {
-        return '{{{ loginTemplate }}}'
+        return '{{{ loginTemplate }}}';
     }
+}
+
+function checkForm(evt: Event) {
+    evt.preventDefault();
+    console.log('перемога буде ура');
 }
