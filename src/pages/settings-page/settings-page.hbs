@@ -1,23 +1,17 @@
-{{#> Main}}
-    <div class="settings-container">
-        {{#> Form}}
-            {{> Avatar avatar="/assets/avatar-settings.jpg" }}
-            {{> PageTitle title="Иван" }}
-         <div class="name-group">
-            {{> InputField className="login-page__input" title="Имя" name="first_name" }}
-            {{> InputField className="login-page__input" title="Фамилия" name="second_name" }}
-        </div>
-            {{> InputField className="login-page__input" title="Пароль" name="oldPassword" type="password" }}
-            {{> InputField className="login-page__input" title="Логин" name="login" }}
-            {{> InputField className="login-page__input" title="Почта" name="email"}}
-            {{> InputField className="login-page__input" title="Телефон" name="phone" }}
-        {{/ Form}}
-        <nav class="navigation">
-          <ul class="navigation-list">
-            <li class="navigation-list_link">{{> Link text="Изменить данные" }}</li>
-            <li class="navigation-list_link">{{> Link text="Изменить пароль" }}</li>
-            <li class="navigation-list_link">{{> Link text="Выйти" page="login" className='exit' }}</li>          
-          </ul>
-        </nav>
-    </div>
-{{/ Main}}
+<main class="main">
+  <div class="settings-container">
+    {{{SettingsForm}}}
+    <nav class="navigation">
+      {{{Button}}}
+      <ul class="navigation-list">
+        <li class="navigation-list_link">
+          <a href="" class="link" page="">Изменить пароль</a></li>
+        <li class="navigation-list_link"><a
+            href=""
+            class="link exit"
+            page="login"
+          >Выйти</a></li>
+      </ul>
+    </nav>
+  </div>
+</main>

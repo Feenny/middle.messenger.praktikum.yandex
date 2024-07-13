@@ -1,4 +1,4 @@
-<div class="chat-item">
+<div class="chat-item{{#if className}} {{{ className }}}{{/if}}">
   <div class="chat-item__line"></div>
   <div class="chat-item__block{{#if current}} chat-item__block--current{{/if}}">
     {{#if avatar}}

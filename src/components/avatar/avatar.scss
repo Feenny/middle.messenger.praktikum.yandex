@@ -4,7 +4,7 @@
   position: relative;
   height: $settings-avatar-size;
   width: $settings-avatar-size;
-  }
+}
 
 .avatar__img {
   position: absolute;
@@ -21,7 +21,7 @@
 }
 
 .avatar__input_container {
-  background: rgba(56, 56, 56, 0.541);
+  background: rgb(56 56 56 / 54.1%);
   border-radius: $settings-avatar-radius;
   width: 100%;
   height: 100%;

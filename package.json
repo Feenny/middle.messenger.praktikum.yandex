@@ -6,26 +6,57 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build && tsc",
+    "lint:ts": "eslint \"**/*.{ts,tsx}\"",
+    "lint:ts:fix": "eslint \"**/*.{ts,tsx}\" --fix",
+    "lint:scss": "npx stylelint \"**/*.scss\"",
+    "lint:scss:fix": "npx stylelint \"**/*.scss\" --fix",
+    "lint": "eslint . --ext .ts,.tsx",
+    "lint:fix": "eslint . --ext .ts,.tsx --fix",
+    "stylelint:fix": "stylelint \"**/*.scss\" --fix",
     "server": "node server.js",
     "start": "npm run build && npm run server",
     "preview": "vite preview"
   },
+  "prettier": {
+    "overrides": [
+      {
+        "files": "*.ts",
+        "options": {
+          "tabWidth": 4,
+          "singleQuote": true
+        }
+      }
+    ]
+  },
   "devDependencies": {
+    "@eslint/js": "^9.6.0",
     "@types/node": "^20.14.2",
+    "@typescript-eslint/eslint-plugin": "^7.15.0",
+    "@typescript-eslint/parser": "^7.15.0",
     "autoprefixer": "^10.4.19",
+    "eslint": "^8.57.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^9.1.0",
+    "globals": "^15.8.0",
     "postcss": "^8.4.38",
+    "prettier": "^3.3.2",
     "sass": "^1.77.5",
+    "stylelint": "^16.6.1",
+    "stylelint-config-standard": "^36.0.1",
+    "stylelint-config-standard-scss": "^13.1.0",
     "typescript": "^5.2.2",
+    "typescript-eslint": "^7.15.0",
     "vite": "^5.2.0",
     "vite-plugin-sass": "^0.1.0",
     "vite-plugin-static-copy": "^1.0.5"
   },
   "dependencies": {
     "express": "^4.19.2",
+    "stylelint-scss": "^6.3.2",
     "vite-plugin-handlebars": "^2.0.0"
   },
-  "engines" : { 
-    "npm" : ">=10.0.0",
-    "node" : ">=20.0.0"
+  "engines": {
+    "npm": ">=10.0.0",
+    "node": ">=20.0.0"
   }
 }

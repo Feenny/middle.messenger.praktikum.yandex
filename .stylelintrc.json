@@ -1,0 +1,17 @@
+{
+  "extends": ["stylelint-config-standard-scss"],
+  "rules": {
+    "selector-class-pattern": null,
+    "scss/no-global-function-names": null,
+    "scss/operator-no-unspaced": null,
+    "scss/dollar-variable-empty-line-before": null,
+    "no-descending-specificity": true
+  },
+  "ignoreFiles": [
+    "./node_modules /**/*.css",
+    "./dist /**/*.css",
+    "./coverage /**/*.css",
+    "src/**/*",
+    "../src/**/*"
+  ]
+}

@@ -1,26 +1,8 @@
-{{#> Main page="registration"}}
-  {{#> SidebarImg sidebar-bg="/assets/registration-sidebar-bg.jpg" alt="Алиса в стране чудес"}}{{/ SidebarImg }}
+<main class="main">
+  {{{SidebarImg}}}
   <section class="login-content">
-  {{#> Dialog }}
-    <form class="login-page">
-      <div class="login-page__content">
-        {{> PageTitle title="Регистрация" }}
-        <div class="name-group">
-            {{> InputField className="login-page__input" title="Имя" name="first_name" }}
-            {{> InputField className="login-page__input" title="Фамилия" name="second_name" }}
-        </div>
-        {{> InputField className="login-page__input" title="Почта" name="email" }}
-        {{> InputField className="login-page__input" title="Логин" name="login" }}
-        {{> InputField className="login-page__input" title="Телефон" name="phone" }}
-        {{> InputField className="login-page__input" title="Пароль" name="password" type="password" }}
-        {{> InputField className="login-page__input" title="Повторите пароль" name="password" type="password" }}
-      </div>
-      <div class="login-page__footer">
-        {{> Button text="Зарегистрироваться" page="chat" }}
-        <p class="login-link"> Есть аккаунт?
-          {{> Link text="Войти" page="login" }}
-        </p>
-      </div>
-    </form>
-  {{/ Dialog }}</section>
-{{/ Main}}
+    <div class="dialog">
+      {{{InputForm}}}
+    </div>
+  </section>
+</main>
