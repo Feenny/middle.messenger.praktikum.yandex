@@ -1,3 +1,5 @@
+import { SignUpRequestData } from './../../api/types';
+import { Route } from './../../tools/Route';
 import LoginPageTemplate from './login-page.hbs?raw';
 import './login-page.scss';
 import Block from '../../tools/Block';
@@ -9,6 +11,7 @@ import { InputField } from '../../components/input-field';
 import { Link } from '../../components/link';
 import { PageTitle } from '../../components';
 import { SidebarImg } from '../../components/sidebar-img';
+import { LoginRequestData } from '../../api/types';
 
 import {
     loginValidation,
@@ -16,6 +19,8 @@ import {
     passwordValidation,
     formValidate,
 } from '../../tools/Validation';
+import { AuthApi } from '../../api/auth';
+import { json } from 'stream/consumers';
 
 class PageComponent extends Block {
     render() {
@@ -106,15 +111,18 @@ const inputFormContent = new InputFormComponent({
         type: 'submit',
         text: 'Войти',
         page: 'chat',
+        // url: '/chat',
     }),
     questionText: 'Нет аккаунта?',
     Link: new LinkComponent({
         text: 'Зарегистрироваться',
         page: 'registration',
+        url: '/sign-up',
     }),
+    // Валидация формы
     events: {
         submit: (event: Event) => {
-            formValidate(event);
+            // formValidate(event);
         },
     },
 });
@@ -131,6 +139,32 @@ export class LoginPage extends Block {
                 InputForm: inputFormContent,
             }),
         });
+    }
+
+    // init() {
+    //     console.log('someFunc start');
+    // }
+
+    submitForm(event: Event) {
+        console.log('submitForm');
+        // const target = event.target as HTMLFormElement;
+        // const { form } = target.form;
+        // const formData = new FormData(form);
+        // const loginData: LoginRequestData = {
+        //     login: 'login123',
+        //     password: 'pass1331',
+        // } as LoginRequestData;
+        // const signUpData: SignUpRequestData = {} as SignUpRequestData;
+
+        // // formData.forEach((value, key) => {
+        // //     loginData[key] = value.toString();
+        // // });
+
+        // const authApi = new AuthApi();
+        // authApi.login(loginData);
+        // // authApi.signup(signUpData);
+        // console.log(authApi);
+        // event.preventDefault();
     }
 
     override render() {

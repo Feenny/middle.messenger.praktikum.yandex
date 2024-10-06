@@ -1,77 +1,144 @@
-// const METHODS = {
-//   GET: 'GET',
-//   POST: 'POST',
-//   PUT: 'PUT',
-//   DELETE: 'DELETE',
-// };
+import queryStringify from '../utils/queryStringify';
 
-// function queryStringify(data) {
-//   if (typeof data !== 'object') {
-//     throw new Error('Data must be object');
-//   }
+const METHODS = {
+    GET: 'GET',
+    PUT: 'PUT',
+    POST: 'POST',
+    DELETE: 'DELETE',
+};
 
-//   const keys = Object.keys(data);
-//   return keys.reduce((result, key, index) => {
-//     return `${result}${key}=${data[key]}${index < keys.length - 1 ? '&' : ''}`;
-//   }, '?');
-// }
+type Methods = (typeof METHODS)[keyof typeof METHODS];
 
-// class HTTPTransport {
-//   get = (url, options = {}) => {
+interface RequestOptions {
+    method?: Methods;
+    headers?: { [key: string]: string };
+    data?: any;
+    timeout?: number;
+}
 
-//     return this.request(url, {...options, method: METHODS.GET}, options.timeout);
-//   };
+class HTTPTransport {
+    private apiDomain: string = 'https://ya-praktikum.tech';
 
-// post = (url, options = {}) => {
-//   return this.request(url, {...options, method: METHODS.POST}, options.timeout);
-// };
+    apiUrl: string;
 
-// put = (url, options = {}) => {
-//   return this.request(url, {...options, method: METHODS.PUT}, options.timeout);
-// };
+    constructor(endpoint: string = '') {
+        this.apiUrl = `${this.apiDomain}${endpoint}`;
+    }
 
-// delete = (url, options = {}) => {
-//   return this.request(url, {...options, method: METHODS.DELETE}, options.timeout);
-// };
+    get = (
+        url: string,
+        options: RequestOptions = {},
+    ): Promise<XMLHttpRequest> => {
+        return this.request(
+            `${this.apiUrl}${url}`,
+            { ...options, method: METHODS.GET },
+            options.timeout,
+        );
+    };
 
-// request = (url, options = {}, timeout = 5000) => {
-//   const {headers = {}, method, data} = options;
+    put = (
+        url: string,
+        options: RequestOptions = {},
+    ): Promise<XMLHttpRequest> => {
+        return this.request(
+            `${this.apiUrl}${url}`,
+            { ...options, method: METHODS.PUT },
+            options.timeout,
+        );
+    };
 
-//   return new Promise(function(resolve, reject) {
-//     if (!method) {
-//       reject('No method');
-//       return;
-//     }
+    post = (
+        url: string,
+        options: RequestOptions = {},
+    ): Promise<XMLHttpRequest> => {
+        return this.request(
+            `${this.apiUrl}${url}`,
+            { ...options, method: METHODS.POST },
+            options.timeout,
+        );
+    };
 
-//     const xhr = new XMLHttpRequest();
-//     const isGet = method === METHODS.GET;
+    delete = (
+        url: string,
+        options: RequestOptions = {},
+    ): Promise<XMLHttpRequest> => {
+        return this.request(
+            `${this.apiUrl}${url}`,
+            { ...options, method: METHODS.DELETE },
+            options.timeout,
+        );
+    };
 
-//     xhr.open(
-//       method,
-//       isGet && !!data
-//       ? `${url}${queryStringify(data)}`
-//       : url,
-//     );
+    // options:
+    // headers — obj
+    // data — obj
+    request = (
+        url: string,
+        options: RequestOptions,
+        timeout = 5000,
+    ): Promise<XMLHttpRequest> => {
+        const { method, headers = {}, data } = options;
 
-//     Object.keys(headers).forEach(key => {
-//       xhr.setRequestHeader(key, headers[key]);
-//     });
+        return new Promise((resolve, reject) => {
+            if (!method) {
+                reject('No method');
+                return;
+            }
 
-//     xhr.onload = function() {
-//       resolve(xhr);
-//     };
+            const xhr = new XMLHttpRequest();
 
-//     xhr.onabort = reject;
-//     xhr.onerror = reject;
+            if (method === METHODS.GET && data) url += queryStringify(data);
 
-//     xhr.timeout = timeout;
-//     xhr.ontimeout = reject;
+            xhr.open(method, url);
+            xhr.withCredentials = true;
 
-//     if (isGet || !data) {
-//       xhr.send();
-//     } else {
-//       xhr.send(data);
-//     }
-//   });
-// };
-// }
+            if (data instanceof FormData) delete headers['Content-Type'];
+            else
+                headers['Content-Type'] =
+                    headers['Content-Type'] || 'application/json;charset=UTF-8';
+
+            Object.keys(headers).forEach((key) => {
+                xhr.setRequestHeader(key, headers[key]);
+            });
+            console.log('re q u e ssssssst');
+            xhr.timeout = timeout;
+            xhr.onload = function () {
+                console.log(`STATUS LO: ${this.status}`)
+                if (this.status >= 200 && this.status < 300)
+                    if (
+                        this.getResponseHeader('content-type')?.startsWith(
+                            'application/json',
+                        )
+                    ) {
+                        const data = JSON.parse(this.response);
+                        console.log(`responce body: ${data.getBody()}`);
+                        resolve(data);
+                    } else resolve(this.response);
+                else if (this.response) reject(JSON.parse(this.response));
+                else reject(new Error());
+            };
+            console.log('re q u e ssssssst22222222222222');
+            xhr.onerror = function () {
+                reject(new Error('Network error'));
+            };
+
+            xhr.onabort = function () {
+                reject(new Error('Network error'));
+            };
+
+            xhr.ontimeout = function () {
+                reject(new Error('Request timed out'));
+            };
+
+            // Отправляем данные (если это не GET-запрос и данные есть)
+            if (method === METHODS.GET || !data) xhr.send();
+            else if (data instanceof FormData) xhr.send(data);
+            // else if (headers['Content-Type'] === 'application/json')
+            //   xhr.send(JSON.stringify(data));
+            else xhr.send(JSON.stringify(data));
+            // xhr.send(data);
+        });
+    };
+}
+
+export default HTTPTransport;

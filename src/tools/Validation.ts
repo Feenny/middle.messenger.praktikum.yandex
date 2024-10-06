@@ -1,3 +1,6 @@
+import { AuthApi } from '../api/auth';
+import { LoginRequestData } from '../api/types';
+
 export interface ValidationFunction {
     (value: string): boolean;
 }
@@ -25,8 +28,14 @@ export function checkValidate(
     }
 }
 
-export function formValidate(event: Event) {
+export function formValidate(event: Event, loginData: LoginRequestData) {
     event.preventDefault();
+
+    const authApi = new AuthApi();
+    authApi.login(loginData);
+
+    window.router.go('/chat');
+    console.log(event);
     console.log('form validate');
 }
 
@@ -56,4 +65,5 @@ export const phoneValidation: ValidationFunction = (value) => {
     return regex.test(value);
 };
 
-export const messageValidation: ValidationFunction = (value) => value.trim() !== '';
+export const messageValidation: ValidationFunction = (value) =>
+    value.trim() !== '';

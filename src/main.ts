@@ -1,49 +1,44 @@
-import Handlebars from 'handlebars'
-import * as Components from './components'
-import { Error4Page } from './pages/error4-page/error4-page'
-import { Error5Page } from './pages/error5-page/error5-page'
-import { LoginPage } from './pages/login-page/login-page'
-import { RegistrationPage } from './pages/registration-page/registration-page'
-import { ChatPage } from './pages/chat-page/chat-page'
-import { SettingsPage } from './pages/settings-page/settings-page'
-
-const loginPage = new LoginPage({})
-const registrationPage = new RegistrationPage({})
-const chatPage = new ChatPage({})
-const settingsPage = new SettingsPage({})
-const error404Page = new Error4Page({})
-const error505Page = new Error5Page({})
-
-const pages = {
-    chat: chatPage,
-    login: loginPage,
-    registration: registrationPage,
-    settings: settingsPage,
-    error404: error404Page,
-    error505: error505Page,
-}
+import Handlebars from 'handlebars';
+import * as Components from './components';
+import Router from './tools/Router';
+import * as Pages from './pages';
+import { Store } from './tools/Store';
 
 Object.entries(Components).forEach(([name, component]) => {
-    Handlebars.registerPartial(name, component)
-})
-
-export function navigate(page: string) {
-    const block = pages[page as keyof typeof pages]
-    container.replaceChildren(block.getContent())
+    Handlebars.registerPartial(name, component);
+});
+declare global {
+    export type Keys<T extends Record<string, unknown>> = keyof T;
+    export type Values<T extends Record<string, unknown>> = T[Keys<T>];
 }
 
-document.addEventListener('DOMContentLoaded', () => navigate('login'))
-
-document.addEventListener('click', (e) => {
-    const target = e.target as HTMLElement
-    const page = target.getAttribute('page')
-    if (page) {
-        navigate(page)
-        e.preventDefault()
-        e.stopImmediatePropagation()
+declare global {
+    interface Window {
+        store: Store<any>;
+        router: Router;
     }
-})
 
-const block = new SettingsPage({})
-const container = document.getElementById('app')!
-container.append(block.getContent()!)
+    type Nullable<T> = T | null;
+}
+
+const router = new Router('#app');
+window.router = router;
+
+router
+    .use('/', Pages.LoginPage)
+    .use('/login', Pages.LoginPage)
+    .use('/sign-up', Pages.RegistrationPage)
+    .use('/chat', Pages.ChatPage)
+    .use('/settings', Pages.SettingsPage)
+    .use('/404', Pages.Error4Page)
+    .use('/500', Pages.Error5Page)
+    .start();
+
+window.store = new Store({
+    Updated: false,
+    isLoading: false,
+    loginError: null,
+    cats: [],
+    user: null,
+    selectedCard: null,
+});

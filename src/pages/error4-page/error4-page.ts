@@ -32,6 +32,7 @@ export class Error4Page extends Block {
                     Link: new LinkComponent({
                         text: 'Назад к чатам',
                         page: 'chat',
+                        url: '/chat',
                     }),
                 }),
             }),

@@ -14,7 +14,7 @@
   position: absolute;
   display: flex;
   flex-direction: column;
-  z-index: 1000;
+  z-index: 10;
   width: 100%;
   height: 100%;
   padding: 24px;
@@ -29,7 +29,26 @@
   // background-color: $chat-list-bgcolor ;
   width: 100%;
   height: 70px;
+  z-index: 100;
+}
+
+.chat__message-button {
+  border: none;
+  position: absolute;
+  padding: 2px;
+  top: 19px;
+  right: 28px;
   z-index: 1000;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  appearance: none;
+  background-color: inherit;
+}
+
+.chat__message-button_image{
+width: 100%;
+height: 100%;
 }
 
 .chat-container__image {
@@ -58,4 +77,8 @@
   width: 100%;
   height: 100%;
   backdrop-filter: blur(26px);
+}
+
+.chat__message-input .input__element{
+  height: 100% !important;
 }
