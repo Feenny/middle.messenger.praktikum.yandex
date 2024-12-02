@@ -1,11 +1,11 @@
-.add-button_wrapper{
+.add-button_wrapper {
   width: 100%;
   height: 44px;
   margin-top: 12px;
   position: relative;
 }
 
-.button__add-chat{
+.button__add-chat {
   margin-top: 12px;
 }
 
@@ -16,7 +16,7 @@
   border-right: 1px solid rgb(240 240 240);
 }
 
-.chat__add-button{
+.chat__add-button {
   margin: 0;
   border-radius: 22px;
   font-size: 22px;
@@ -26,13 +26,13 @@
   position: absolute;
 }
 
-.chat__add_container{
+.chat__add_container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.chat__link{
+.chat__link {
   margin-top: 16px;
 }
