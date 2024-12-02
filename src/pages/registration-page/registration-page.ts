@@ -272,6 +272,13 @@ async function signup(event: Event) {
     } as SignUpRequestData;
 
     const authApi = new AuthApi();
-    await authApi.signup(registrationData);
+    try {
+        await authApi.signup(registrationData);
+    } catch (error: any) {
+        if (error.reason === 'User already in system') {
+            window.router.go('/messenger');
+            return;
+        }
+    }
     window.router.go('/messenger');
 }
