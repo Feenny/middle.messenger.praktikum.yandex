@@ -138,9 +138,11 @@ export class ChatPage extends Block {
 
     async getChatsList() {
         const chatsApi = new ChatsApi();
-        const responce : any = await chatsApi.getChats();
-        document.querySelector('.empty__messages').textContent = 'Выберите чат или создайте его';
+        const responce: any = await chatsApi.getChats();
         const emptyMessageField = document.querySelector('.empty__messages');
+        if (emptyMessageField) {
+            emptyMessageField.textContent = 'Выберите чат или создайте его';
+        }
         emptyMessageField?.classList.remove('hidden');
 
         const chatsArray = responce.map(
@@ -176,11 +178,11 @@ async function openChat(chatID: ChatId, СhatContainer: ChatContainerComponent) 
     input?.classList.remove('hidden');
 
     const auth = new AuthApi();
-    const userResponce : any = await auth.userinfo();
+    const userResponce: any = await auth.userinfo();
     const userID = userResponce.id;
 
     const chatsApi = new ChatsApi();
-    const tokenResponce : any = await chatsApi.getToken(chatID);
+    const tokenResponce: any = await chatsApi.getToken(chatID);
 
     socket = new WebSocket(
         `wss://ya-praktikum.tech/ws/chats/${userID}/${chatID}/${tokenResponce.token}`,
@@ -241,8 +243,10 @@ async function addChat(event: Event) {
     };
 
     const userAPI = new UserApi();
-    const userResponse : any = await userAPI.searchUser(login);
-    const userFound = userResponse.find((user: UserSearch) => user.login === login.login);
+    const userResponse: any = await userAPI.searchUser(login);
+    const userFound = userResponse.find(
+        (user: UserSearch) => user.login === login.login,
+    );
 
     if (userFound) {
         const userId = userFound.id;
@@ -254,7 +258,7 @@ async function addChat(event: Event) {
         const title: CreateChat = {
             title: userName,
         };
-        const createChatResponse : any = await chatsAPI.createChat(title);
+        const createChatResponse: any = await chatsAPI.createChat(title);
 
         const users: number[] = [];
         users.push(userId);
@@ -297,7 +301,7 @@ async function addChat(event: Event) {
 function sendMessage(event: Event) {
     event.preventDefault();
 
-    const input = (event.target as HTMLInputElement).querySelector(
+    const input: any = (event.target as HTMLInputElement).querySelector(
         '.input__element',
     );
 
@@ -319,12 +323,10 @@ function formatDate(messageTime: Date) {
         String(date.getDate()).padStart(2, '0'),
         String(date.getMonth() + 1).padStart(2, '0'),
         String(date.getFullYear()).slice(-2),
-    ].join('.')
-    } ${
-        [
-            String(date.getHours()).padStart(2, '0'),
-            String(date.getMinutes()).padStart(2, '0'),
-        ].join(':')}`;
+    ].join('.')} ${[
+        String(date.getHours()).padStart(2, '0'),
+        String(date.getMinutes()).padStart(2, '0'),
+    ].join(':')}`;
 
     return formattedDate;
 }
