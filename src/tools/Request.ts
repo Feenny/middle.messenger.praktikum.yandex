@@ -1,4 +1,3 @@
-import { resolve } from 'path';
 import queryStringify from '../utils/queryStringify';
 
 const METHODS = {
