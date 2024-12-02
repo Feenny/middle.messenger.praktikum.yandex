@@ -1,3 +1,4 @@
+/* eslint-disable func-names */
 /* eslint-disable prefer-promise-reject-errors */
 import queryStringify from '../utils/queryStringify';
 
