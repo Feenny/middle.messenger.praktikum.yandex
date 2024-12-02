@@ -176,11 +176,11 @@ async function openChat(chatID: ChatId, СhatContainer: ChatContainerComponent) 
     input?.classList.remove('hidden');
 
     const auth = new AuthApi();
-    const userResponce = await auth.userinfo();
+    const userResponce : any = await auth.userinfo();
     const userID = userResponce.id;
 
     const chatsApi = new ChatsApi();
-    const tokenResponce = await chatsApi.getToken(chatID);
+    const tokenResponce : any = await chatsApi.getToken(chatID);
 
     socket = new WebSocket(
         `wss://ya-praktikum.tech/ws/chats/${userID}/${chatID}/${tokenResponce.token}`,
@@ -254,12 +254,12 @@ async function addChat(event: Event) {
         const title: CreateChat = {
             title: userName,
         };
-        const createChatResponse = await chatsAPI.createChat(title);
+        const createChatResponse : any = await chatsAPI.createChat(title);
 
         const users: number[] = [];
         users.push(userId);
 
-        const chatId: number = createChatResponse.id;
+        const chatId: any = createChatResponse.id;
 
         const addUserData: ChatAddUser = {
             users,

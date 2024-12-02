@@ -2,7 +2,7 @@ import HTTPTransport from '../tools/Request';
 import { LoginRequestData, SignUpRequestData, ChangeUserData } from './types';
 
 export default class AuthApi {
-    public httpTransport: HTTPTransport;
+    private httpTransport: HTTPTransport;
 
     constructor() {
         this.httpTransport = new HTTPTransport('/api/v2/auth');

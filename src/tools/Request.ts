@@ -119,10 +119,9 @@ class HTTPTransport {
                         resolve(data);
                     }
 
-                    // window.router.go('/404');
+                    window.router.go('/404');
                     reject(JSON.parse(this.response));
                 } else {
-                    console.log('xhr 122');
                     reject(new Error());
                 }
             };

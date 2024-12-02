@@ -223,7 +223,7 @@ export class SettingsPage extends Block {
 
     async getUserInfo() {
         const authApi = new AuthApi();
-        const responce = await authApi.userinfo();
+        const responce : any = await authApi.userinfo();
         console.log(`responce: ${JSON.stringify(responce)}`);
         pageTitle.setProps({ title: responce.first_name });
 
@@ -241,13 +241,13 @@ export class SettingsPage extends Block {
 }
 
 function setImage() {
-    const fileInput = document.querySelector('.avatar__input');
-    const file = fileInput.files[0];
+    const fileInput : any = document.querySelector('.avatar__input');
+    const file = fileInput?.files[0];
     if (file) {
-        const img = document.getElementById('avatar__img');
+        const img : any = document.getElementById('avatar__img');
         const reader = new FileReader();
         reader.onload = function (e) {
-            img.src = e.target.result;
+            img.src = (e.target)?.result;
         };
 
         reader.readAsDataURL(file);
@@ -286,7 +286,7 @@ async function changeProfile(event: Event) {
     const authApi = new UserApi();
     await authApi.changeProfile(userData);
 
-    const fileInput = document.querySelector('.avatar__input'); // Изменено для выбора по классу
+    const fileInput : any = document.querySelector('.avatar__input'); // Изменено для выбора по классу
     const file = fileInput?.files[0]; // Получаем выбранный файл
 
     if (file) {
