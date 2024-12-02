@@ -14,7 +14,7 @@
   },
   "plugins": ["@typescript-eslint"],
   "rules": {
-    " implicit-arrow-linebreak": "off",
+    "implicit-arrow-linebreak": "off",
     "func-names": "off",
     "no-var": "error",
     "quotes": ["error", "single"],
