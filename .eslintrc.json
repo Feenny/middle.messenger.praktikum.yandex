@@ -19,7 +19,7 @@
     "@typescript-eslint/semi": "off",
     "indent": ["error", 4],
     "no-use-before-define": "off",
-    "@typescript-eslint/no-use-before-define": "warn",
+    "@typescript-eslint/no-use-before-define": "off",
     "class-methods-use-this": "off",
     "import/no-unresolved": "off",
     "import/prefer-default-export": "off",

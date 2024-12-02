@@ -1,5 +1,4 @@
-import { SignUpRequestData } from './../../api/types';
-import { Route } from './../../tools/Route';
+import { LoginRequestData } from '../../api/types';
 import AuthApi from '../../api/auth';
 import LoginPageTemplate from './login-page.hbs?raw';
 import './login-page.scss';
@@ -13,7 +12,6 @@ import { Link } from '../../components/link';
 import { Logout } from '../../components/logout';
 import { PageTitle } from '../../components';
 import { SidebarImg } from '../../components/sidebar-img';
-import { LoginRequestData } from '../../api/types';
 
 import {
     loginValidation,
@@ -21,7 +19,6 @@ import {
     passwordValidation,
     formValidate,
 } from '../../tools/Validation';
-import { json } from 'stream/consumers';
 
 class PageComponent extends Block {
     render() {
@@ -169,10 +166,10 @@ async function submitForm(event: Event) {
 
     const form = event.target as HTMLFormElement;
 
-    const formLogin = form.querySelector(`[name="login"]`);
+    const formLogin = form.querySelector('[name="login"]');
     const formLoginValue = (formLogin as HTMLInputElement).value;
 
-    const formPassword = form.querySelector(`[name="password"]`);
+    const formPassword = form.querySelector('[name="password"]');
     const formPasswordValue = (formPassword as HTMLInputElement).value;
 
     const loginData: LoginRequestData = {
