@@ -177,7 +177,14 @@ async function submitForm(event: Event) {
     } as LoginRequestData;
 
     const authApi = new AuthApi();
-    await authApi.login(loginData);
+    try {
+        await authApi.login(loginData);
+    } catch (error: any) {
+        if (error.reason === 'User already in system') {
+            window.router.go('/messenger');
+            return;
+        }
+    }
     window.router.go('/messenger');
 }
 
