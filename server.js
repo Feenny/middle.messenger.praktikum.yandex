@@ -1,16 +1,18 @@
-const { config } = require('dotenv');
-const express = require('express');
-const path = require('path');
+import express from 'express'
+import http from 'http'
+import path from 'path'
+import { fileURLToPath } from 'url';
 
-const app = express();
+const app = express()
+const PORT = 3000
+const server = http.createServer(app);
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
 
-config();
-
-const folderPath = path.join(__dirname, 'static')
-app.use(express.static(folderPath));
-
-const PORT = process.env.PORT || 3000;
-
-app.listen(PORT, () => {
-    console.log(`Server started on port ${PORT}`);
+app.use(express.static('./dist'));
+app.get('*', (_req, res) => {
+    res.sendFile(path.join(__dirname, '../assets/index.html'));
+});
+server.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`)
 })
