@@ -92,7 +92,8 @@ class HTTPTransport {
 
             if (data instanceof FormData) delete headers['Content-Type'];
             else
-                headers['Content-Type'] = headers['Content-Type'] || 'application/json;charset=UTF-8';
+                headers['Content-Type'] =
+                    headers['Content-Type'] || 'application/json;charset=UTF-8';
 
             Object.keys(headers).forEach((key) => {
                 xhr.setRequestHeader(key, headers[key]);
@@ -138,16 +139,12 @@ class HTTPTransport {
                 reject(new Error('Request timed out'));
             };
 
-            // Отправляем данные (если это не GET-запрос и данные есть)
             if (method === METHODS.GET || !data) xhr.send();
             else if (data instanceof FormData) xhr.send(data);
-            // else if (headers['Content-Type'] === 'application/json')
-            //   xhr.send(JSON.stringify(data));
             else {
                 console.log(`JSON DATA: ${JSON.stringify(data)}`);
                 xhr.send(JSON.stringify(data));
             }
-            // xhr.send(data);
         });
     };
 }

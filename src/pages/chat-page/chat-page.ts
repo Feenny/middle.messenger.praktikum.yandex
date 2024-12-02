@@ -139,8 +139,7 @@ export class ChatPage extends Block {
     async getChatsList() {
         const chatsApi = new ChatsApi();
         const responce = await chatsApi.getChats();
-        document.querySelector('.empty__messages').textContent =
-            'Выберите чат или создайте его';
+        document.querySelector('.empty__messages').textContent = 'Выберите чат или создайте его';
         const emptyMessageField = document.querySelector('.empty__messages');
         emptyMessageField?.classList.remove('hidden');
 
@@ -236,7 +235,7 @@ async function addChat(event: Event) {
 
     const addChatForm = event.target as HTMLFormElement;
 
-    const addChatSearch = addChatForm.querySelector(`[name="search"]`);
+    const addChatSearch = addChatForm.querySelector('[name="search"]');
     const login: UserSearch = {
         login: (addChatSearch as HTMLInputElement).value,
     };
@@ -316,17 +315,16 @@ function sendMessage(event: Event) {
 function formatDate(messageTime: Date) {
     const date = new Date(messageTime);
 
-    const formattedDate =
-        [
-            String(date.getDate()).padStart(2, '0'),
-            String(date.getMonth() + 1).padStart(2, '0'),
-            String(date.getFullYear()).slice(-2),
-        ].join('.') +
-        ' ' +
+    const formattedDate = `${[
+        String(date.getDate()).padStart(2, '0'),
+        String(date.getMonth() + 1).padStart(2, '0'),
+        String(date.getFullYear()).slice(-2),
+    ].join('.')
+    } ${
         [
             String(date.getHours()).padStart(2, '0'),
             String(date.getMinutes()).padStart(2, '0'),
-        ].join(':');
+        ].join(':')}`;
 
     return formattedDate;
 }
