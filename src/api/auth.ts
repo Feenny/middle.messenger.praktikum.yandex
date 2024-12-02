@@ -1,16 +1,14 @@
 import HTTPTransport from '../tools/Request';
-import { LoginRequestData, SignUpRequestData } from './types';
+import { LoginRequestData, SignUpRequestData, ChangeUserData } from './types';
 
-export class AuthApi {
-    private httpTransport: HTTPTransport;
+export default class AuthApi {
+    public httpTransport: HTTPTransport;
 
     constructor() {
         this.httpTransport = new HTTPTransport('/api/v2/auth');
     }
 
     async login(data: LoginRequestData) {
-        console.dir(`login data: ${data.login}`);
-        console.dir(`pass data: ${data.password}`);
         return this.httpTransport.post('/signin', {
             data,
             headers: { 'Content-Type': 'application/json' },

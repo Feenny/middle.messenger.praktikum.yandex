@@ -1,0 +1,47 @@
+@import "../../assets/variables";
+
+@property --myColor1 {
+  syntax: "<color>";
+  initial-value: $link-color;
+  inherits: false;
+}
+
+@property --myColor2 {
+  syntax: "<color>";
+  initial-value: $link-color-2;
+  inherits: false;
+}
+
+.logout {
+  width: 56px;
+  height: 56px;
+  position: absolute;
+  border-radius: 24px;
+  bottom: 60px;
+  right: 50px;
+}
+
+.logout_button {
+  font: $font-button;
+  text-align: center;
+  width: 64px;
+  height: 64;
+  position: absolute;
+  border-radius: 32px;
+  border: none;
+  color: $button-color;
+  background: linear-gradient(90deg, var(--myColor1), var(--myColor2) 100%);
+  transition:
+    --mycolor1 0.3s ease-in-out,
+    --mycolor2 0.3s ease-in-out,
+    box-shadow 0.3s ease-in-out;
+  margin-top: 24px;
+  cursor: pointer;
+}
+
+.logout_button:hover {
+  --myColor1: #a6abd1;
+  --myColor2: #7e7ebd;
+
+  box-shadow: 0 8px 10px #0115ca3d;
+}

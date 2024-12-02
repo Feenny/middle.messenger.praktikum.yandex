@@ -17,6 +17,10 @@ export type UserDTO = {
     email: string;
 };
 
+export type UserSearch = {
+    login: string;
+};
+
 export type CreateUser = Omit<UserDTO, 'avatar' | 'display_name' | 'id'> & {
     password: string;
 };
@@ -31,13 +35,13 @@ export type LoginRequestData = {
 };
 
 export type SignUpRequestData = {
-    first_name: string,
-    second_name: string,
-    login: string,
-    email: string,
-    password: string,
-    phone: string,
-    [key: string]: string
+    first_name: string;
+    second_name: string;
+    login: string;
+    email: string;
+    password: string;
+    phone: string;
+    [key: string]: string;
 };
 
 type LastMessage = {
@@ -46,10 +50,29 @@ type LastMessage = {
     content: string;
 };
 
+export type ChatAddUser = {
+    users: number[];
+    chatId: number;
+};
+
 export type ChatDTO = {
     id: number;
     title: string;
     avatar: string | null;
     unread_count: number;
     last_message: LastMessage | null;
+};
+
+export type ChatId = {
+    chatId: number;
+};
+
+export type ChangeUserData = {
+    first_name: string;
+    second_name: string;
+    display_name: string;
+    login: string;
+    email: string;
+    phone: string;
+    [key: string]: string;
 };

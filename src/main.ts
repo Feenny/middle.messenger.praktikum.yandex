@@ -28,7 +28,7 @@ router
     .use('/', Pages.LoginPage)
     .use('/login', Pages.LoginPage)
     .use('/sign-up', Pages.RegistrationPage)
-    .use('/chat', Pages.ChatPage)
+    .use('/messenger', Pages.ChatPage)
     .use('/settings', Pages.SettingsPage)
     .use('/404', Pages.Error4Page)
     .use('/500', Pages.Error5Page)
@@ -42,3 +42,5 @@ window.store = new Store({
     user: null,
     selectedCard: null,
 });
+
+console.dir(window.store, { depth: null, colors: true });

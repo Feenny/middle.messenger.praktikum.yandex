@@ -1,3 +1,4 @@
+import { resolve } from 'path';
 import queryStringify from '../utils/queryStringify';
 
 const METHODS = {
@@ -51,6 +52,7 @@ class HTTPTransport {
         url: string,
         options: RequestOptions = {},
     ): Promise<XMLHttpRequest> => {
+        console.log(`POST: ${this.request.status}`);
         return this.request(
             `${this.apiUrl}${url}`,
             { ...options, method: METHODS.POST },
@@ -81,7 +83,7 @@ class HTTPTransport {
 
         return new Promise((resolve, reject) => {
             if (!method) {
-                reject('No method');
+                reject('No method found');
                 return;
             }
 
@@ -100,24 +102,35 @@ class HTTPTransport {
             Object.keys(headers).forEach((key) => {
                 xhr.setRequestHeader(key, headers[key]);
             });
-            console.log('re q u e ssssssst');
+
             xhr.timeout = timeout;
+
             xhr.onload = function () {
-                console.log(`STATUS LO: ${this.status}`)
-                if (this.status >= 200 && this.status < 300)
+                console.log(`STATUS: ${this.status}`);
+
+                if (this.status >= 200 && this.status < 300) {
                     if (
                         this.getResponseHeader('content-type')?.startsWith(
                             'application/json',
                         )
                     ) {
                         const data = JSON.parse(this.response);
-                        console.log(`responce body: ${data.getBody()}`);
                         resolve(data);
                     } else resolve(this.response);
-                else if (this.response) reject(JSON.parse(this.response));
-                else reject(new Error());
+                } else if (this.response) {
+                    const responseObject = JSON.parse(this.responseText);
+                    if (responseObject.reason === 'User already in system') {
+                        resolve(data);
+                    }
+
+                    // window.router.go('/404');
+                    reject(JSON.parse(this.response));
+                } else {
+                    console.log('xhr 122');
+                    reject(new Error());
+                }
             };
-            console.log('re q u e ssssssst22222222222222');
+
             xhr.onerror = function () {
                 reject(new Error('Network error'));
             };
@@ -135,7 +148,10 @@ class HTTPTransport {
             else if (data instanceof FormData) xhr.send(data);
             // else if (headers['Content-Type'] === 'application/json')
             //   xhr.send(JSON.stringify(data));
-            else xhr.send(JSON.stringify(data));
+            else {
+                console.log(`JSON DATA: ${JSON.stringify(data)}`);
+                xhr.send(JSON.stringify(data));
+            }
             // xhr.send(data);
         });
     };

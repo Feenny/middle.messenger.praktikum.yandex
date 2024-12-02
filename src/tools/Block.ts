@@ -54,14 +54,13 @@ export default class Block {
         const { events = {} } = this.props;
         Object.keys(events).forEach((eventName) => {
             this._element?.removeEventListener(eventName, events[eventName]);
-            console.log(`event removed: ${eventName}`);
         });
     }
 
     _registerEvents(eventBus: EventBus) {
         eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
         eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
-        // eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this))
+        eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
         eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
     }
 
@@ -125,7 +124,8 @@ export default class Block {
         if (!nextProps) {
             return;
         }
-
+        console.log(`thisProps: ${JSON.stringify(this.props)}`)
+        console.log(`setProps: ${JSON.stringify(nextProps)}`)
         Object.assign(this.props, nextProps);
     };
 
@@ -135,7 +135,6 @@ export default class Block {
 
     _render() {
         this._removeEvents();
-        console.log('Render');
         const propsAndStubs: IProps = { ...this.props };
         const _tmpId = Math.floor(100000 + Math.random() * 900000);
         Object.entries(this.children).forEach(([key, child]) => {

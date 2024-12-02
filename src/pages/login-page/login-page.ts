@@ -1,5 +1,6 @@
 import { SignUpRequestData } from './../../api/types';
 import { Route } from './../../tools/Route';
+import AuthApi from '../../api/auth';
 import LoginPageTemplate from './login-page.hbs?raw';
 import './login-page.scss';
 import Block from '../../tools/Block';
@@ -9,6 +10,7 @@ import { Input } from '../../components/input';
 import { InputForm } from '../../components/input-form';
 import { InputField } from '../../components/input-field';
 import { Link } from '../../components/link';
+import { Logout } from '../../components/logout';
 import { PageTitle } from '../../components';
 import { SidebarImg } from '../../components/sidebar-img';
 import { LoginRequestData } from '../../api/types';
@@ -19,7 +21,6 @@ import {
     passwordValidation,
     formValidate,
 } from '../../tools/Validation';
-import { AuthApi } from '../../api/auth';
 import { json } from 'stream/consumers';
 
 class PageComponent extends Block {
@@ -58,6 +59,12 @@ class LinkComponent extends Block {
     }
 }
 
+class LogoutComponent extends Block {
+    render() {
+        return Logout;
+    }
+}
+
 class SideBarImgComponent extends Block {
     render() {
         return SidebarImg;
@@ -76,6 +83,7 @@ const inputLogin = new InputFieldComponent({
     Input: new InputComponent({
         name: 'login',
         title: 'Логин',
+        value: 'shen',
         type: 'text',
         events: {
             blur: (evt: Event) => {
@@ -94,9 +102,13 @@ const inputPassword = new InputFieldComponent({
         name: 'password',
         title: 'Пароль',
         type: 'password',
+        value: 'Shenhe1331',
         events: {
             blur: (event: Event) => {
-                checkValidate(event, passwordValidation, 'password');
+                // checkValidate(event, passwordValidation, 'password');
+                console.log(
+                    checkValidate(event, passwordValidation, 'password'),
+                );
             },
         },
     }),
@@ -110,8 +122,6 @@ const inputFormContent = new InputFormComponent({
     Button: new ButtonComponent({
         type: 'submit',
         text: 'Войти',
-        page: 'chat',
-        // url: '/chat',
     }),
     questionText: 'Нет аккаунта?',
     Link: new LinkComponent({
@@ -122,7 +132,8 @@ const inputFormContent = new InputFormComponent({
     // Валидация формы
     events: {
         submit: (event: Event) => {
-            // formValidate(event);
+            // formValidate(event, false);
+            submitForm(event);
         },
     },
 });
@@ -137,37 +148,47 @@ export class LoginPage extends Block {
                     alt: 'Фоновая картинка: Девушка в коробке',
                 }),
                 InputForm: inputFormContent,
+                Logout: new LogoutComponent({
+                    events: {
+                        click: (event: Event) => {
+                            logoutUser(event);
+                        },
+                    },
+                }),
             }),
         });
-    }
-
-    // init() {
-    //     console.log('someFunc start');
-    // }
-
-    submitForm(event: Event) {
-        console.log('submitForm');
-        // const target = event.target as HTMLFormElement;
-        // const { form } = target.form;
-        // const formData = new FormData(form);
-        // const loginData: LoginRequestData = {
-        //     login: 'login123',
-        //     password: 'pass1331',
-        // } as LoginRequestData;
-        // const signUpData: SignUpRequestData = {} as SignUpRequestData;
-
-        // // formData.forEach((value, key) => {
-        // //     loginData[key] = value.toString();
-        // // });
-
-        // const authApi = new AuthApi();
-        // authApi.login(loginData);
-        // // authApi.signup(signUpData);
-        // console.log(authApi);
-        // event.preventDefault();
     }
 
     override render() {
         return '{{{ loginTemplate }}}';
     }
+}
+
+async function submitForm(event: Event) {
+    event.preventDefault();
+
+    const form = event.target as HTMLFormElement;
+
+    const formLogin = form.querySelector(`[name="login"]`);
+    const formLoginValue = (formLogin as HTMLInputElement).value;
+
+    const formPassword = form.querySelector(`[name="password"]`);
+    const formPasswordValue = (formPassword as HTMLInputElement).value;
+
+    const loginData: LoginRequestData = {
+        login: formLoginValue,
+        password: formPasswordValue,
+    } as LoginRequestData;
+
+    const authApi = new AuthApi();
+    await authApi.login(loginData);
+    window.router.go('/messenger');
+}
+
+async function logoutUser(event: Event) {
+    event.preventDefault();
+    console.log('logout');
+    const authApi = new AuthApi();
+    await authApi.logout();
+    window.router.go('/login');
 }

@@ -30,9 +30,9 @@ export class Error4Page extends Block {
                     error: '404',
                     desctiption: 'беда',
                     Link: new LinkComponent({
-                        text: 'Назад к чатам',
-                        page: 'chat',
-                        url: '/chat',
+                        text: 'На страницу входа',
+                        page: 'login',
+                        url: '/login',
                     }),
                 }),
             }),

@@ -23,16 +23,16 @@ export function connect(mapStateToProps: (arg0: any) => any) {
                     if (!isEqual(state, newState)) {
                         this.setProps({ ...newState });
                     }
-
-                    // не забываем сохранить новое состояние
                     state = newState;
                 };
 
                 // подписываемся на событие
+                console.log('[HOC.ts] подписываемся');
                 store.on(StoreEvents.Updated, this.onChangeStoreCallback);
             }
 
             componentWillUnmount() {
+                console.log('[HOC.ts] componentWillUnmount');
                 super.componentWillUnmount();
                 window.store.off(
                     StoreEvents.Updated,

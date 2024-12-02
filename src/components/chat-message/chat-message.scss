@@ -1,14 +1,19 @@
 .message {
   background: #fffdff;
-  border-radius: 8px;
+  border-radius: 12px;
   display: inline-block;
-  font-size: 15px;
-  line-height: 20px;
+  font-size: 14px;
+  line-height: 22px;
   font-weight: 400;
-  padding: 14px;
+  padding: 12px 28px 12px 12px;
   margin-bottom: 16px;
   position: relative;
   min-width: 50px;
-  max-width: 600px;
+  max-width: 400px;
   filter: drop-shadow(2px 4px 4px #04001407);
+}
+
+.message_content{
+  display: block;                     /* Стиль блока, чтобы текст отображался корректно */
+  word-wrap: break-word;
 }
