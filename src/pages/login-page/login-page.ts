@@ -17,7 +17,6 @@ import {
     loginValidation,
     checkValidate,
     passwordValidation,
-    formValidate,
 } from '../../tools/Validation';
 
 class PageComponent extends Block {

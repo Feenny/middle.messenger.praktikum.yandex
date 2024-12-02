@@ -1,5 +1,5 @@
 import HTTPTransport from '../tools/Request';
-import { LoginRequestData, SignUpRequestData, ChangeUserData } from './types';
+import { LoginRequestData, SignUpRequestData } from './types';
 
 export default class AuthApi {
     private httpTransport: HTTPTransport;

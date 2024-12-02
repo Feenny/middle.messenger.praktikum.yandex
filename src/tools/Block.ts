@@ -91,6 +91,7 @@ export default class Block {
     }
 
     componentDidUpdate(oldProps: IProps, newProps: IProps) {
+        if (oldProps && newProps) console.log(oldProps, oldProps);
         return true;
     }
 
@@ -124,8 +125,8 @@ export default class Block {
         if (!nextProps) {
             return;
         }
-        console.log(`thisProps: ${JSON.stringify(this.props)}`)
-        console.log(`setProps: ${JSON.stringify(nextProps)}`)
+        console.log(`thisProps: ${JSON.stringify(this.props)}`);
+        console.log(`setProps: ${JSON.stringify(nextProps)}`);
         Object.assign(this.props, nextProps);
     };
 
@@ -183,9 +184,7 @@ export default class Block {
         this.addAttributes();
     }
 
-    render() {
-        // return this.getContent();
-    }
+    render() {}
 
     getContent() {
         return this.element;

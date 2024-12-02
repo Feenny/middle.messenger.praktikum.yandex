@@ -1,6 +1,6 @@
 import AuthApi from '../../api/auth';
 import UserApi from '../../api/user';
-import Block, { IProps } from '../../tools/Block';
+import Block from '../../tools/Block';
 import SettingsPageTemplate from './settings-page.hbs?raw';
 import './settings-page.scss';
 
@@ -179,7 +179,7 @@ const pageTitle = new PageComponent({
 const avatar = new AvatarComponent({
     avatar: '/assets/default_avatar.png',
     events: {
-        change: (event: Event) => {
+        change: () => {
             setImage();
         },
     },

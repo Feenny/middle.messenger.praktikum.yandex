@@ -188,7 +188,7 @@ async function openChat(chatID: ChatId, СhatContainer: ChatContainerComponent) 
         `wss://ya-praktikum.tech/ws/chats/${userID}/${chatID}/${tokenResponce.token}`,
     );
 
-    socket.onopen = function (e) {
+    socket.onopen = function () {
         socket.send(
             JSON.stringify({
                 content: 0,
