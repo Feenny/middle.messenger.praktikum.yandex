@@ -1,6 +1,3 @@
-import { AuthApi } from '../api/auth';
-import { LoginRequestData } from '../api/types';
-
 export interface ValidationFunction {
     (value: string): boolean;
 }
@@ -84,5 +81,4 @@ export const phoneValidation: ValidationFunction = (value) => {
     return regex.test(value);
 };
 
-export const messageValidation: ValidationFunction = (value) =>
-    value.trim() !== '';
+export const messageValidation: ValidationFunction = (value) => value.trim() !== '';
