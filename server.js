@@ -11,7 +11,7 @@ const dirname = path.dirname(filename);
 
 app.use(express.static('./dist'));
 app.get('*', (_req, res) => {
-    res.sendFile(path.join(dirname, 'dist/index.html'));
+    res.sendFile(path.join(__dirname, '../assets/index.html'));
 });
 server.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`)
