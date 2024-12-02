@@ -192,6 +192,11 @@ async function logoutUser(event: Event) {
     event.preventDefault();
     console.log('logout');
     const authApi = new AuthApi();
-    await authApi.logout();
+    try {
+        await authApi.logout();
+    } catch (err) {
+        console.log(err);
+        window.router.go('/404');
+    }
     window.router.go('/login');
 }

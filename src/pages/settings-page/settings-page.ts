@@ -223,31 +223,36 @@ export class SettingsPage extends Block {
 
     async getUserInfo() {
         const authApi = new AuthApi();
-        const responce : any = await authApi.userinfo();
-        console.log(`responce: ${JSON.stringify(responce)}`);
-        pageTitle.setProps({ title: responce.first_name });
+        let response: any;
+        try {
+            response = await authApi.userinfo();
+        } catch (err) {
+            console.log(`userInfo error:\n${err}`);
+        }
+        console.log(`response: ${JSON.stringify(response)}`);
+        pageTitle.setProps({ title: response.first_name });
 
         avatar.setProps({
-            avatar: `https://ya-praktikum.tech/api/v2/resources${responce.avatar}`,
+            avatar: `https://ya-praktikum.tech/api/v2/resources${response.avatar}`,
         });
 
-        inputName.setProps({ value: responce.first_name });
-        inputSurname.setProps({ value: responce.second_name });
-        inputPassword.setProps({ value: responce.password });
-        inputLogin.setProps({ value: responce.login });
-        inputEmail.setProps({ value: responce.email });
-        inputPhone.setProps({ value: responce.phone });
+        inputName.setProps({ value: response.first_name });
+        inputSurname.setProps({ value: response.second_name });
+        inputPassword.setProps({ value: response.password });
+        inputLogin.setProps({ value: response.login });
+        inputEmail.setProps({ value: response.email });
+        inputPhone.setProps({ value: response.phone });
     }
 }
 
 function setImage() {
-    const fileInput : any = document.querySelector('.avatar__input');
+    const fileInput: any = document.querySelector('.avatar__input');
     const file = fileInput?.files[0];
     if (file) {
-        const img : any = document.getElementById('avatar__img');
+        const img: any = document.getElementById('avatar__img');
         const reader = new FileReader();
         reader.onload = function (e) {
-            img.src = (e.target)?.result;
+            img.src = e.target?.result;
         };
 
         reader.readAsDataURL(file);
@@ -284,9 +289,13 @@ async function changeProfile(event: Event) {
     } as ChangeUserData;
 
     const authApi = new UserApi();
-    await authApi.changeProfile(userData);
+    try {
+        await authApi.changeProfile(userData);
+    } catch (error: any) {
+        console.log(`changeProfile error:\n${error}`);
+    }
 
-    const fileInput : any = document.querySelector('.avatar__input'); // Изменено для выбора по классу
+    const fileInput: any = document.querySelector('.avatar__input'); // Изменено для выбора по классу
     const file = fileInput?.files[0]; // Получаем выбранный файл
 
     if (file) {
@@ -294,6 +303,10 @@ async function changeProfile(event: Event) {
         const avatar = form.querySelector('[name="avatar"]');
         const avatarValue = (avatar as HTMLInputElement).value;
         formData.append('avatar', avatarValue);
-        await authApi.changeAvatar(formData);
+        try {
+            await authApi.changeAvatar(formData);
+        } catch (error: any) {
+            console.log(`changeAvatar error:\n${error}`);
+        }
     }
 }

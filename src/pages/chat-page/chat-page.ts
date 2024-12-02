@@ -138,14 +138,19 @@ export class ChatPage extends Block {
 
     async getChatsList() {
         const chatsApi = new ChatsApi();
-        const responce: any = await chatsApi.getChats();
+        let response: any;
+        try {
+            response = await chatsApi.getChats();
+        } catch (error: any) {
+            console.log(`getChats error:\n${error}`);
+        }
         const emptyMessageField = document.querySelector('.empty__messages');
         if (emptyMessageField) {
             emptyMessageField.textContent = 'Выберите чат или создайте его';
         }
         emptyMessageField?.classList.remove('hidden');
 
-        const chatsArray = responce.map(
+        const chatsArray = response.map(
             (chat: any) =>
                 new ChatItemComponent({
                     name: chat.title,
@@ -178,14 +183,25 @@ async function openChat(chatID: ChatId, СhatContainer: ChatContainerComponent) 
     input?.classList.remove('hidden');
 
     const auth = new AuthApi();
-    const userResponce: any = await auth.userinfo();
-    const userID = userResponce.id;
+    let userResponse: any;
+    try {
+        userResponse = await auth.userinfo();
+    } catch (error: any) {
+        console.log(`userinfo error:\n${error}`);
+    }
+
+    const userID = userResponse.id;
 
     const chatsApi = new ChatsApi();
-    const tokenResponce: any = await chatsApi.getToken(chatID);
+    let tokenResponse: any;
+    try {
+        tokenResponse = await chatsApi.getToken(chatID);
+    } catch (error: any) {
+        console.log(`getToken error:\n${error}`);
+    }
 
     socket = new WebSocket(
-        `wss://ya-praktikum.tech/ws/chats/${userID}/${chatID}/${tokenResponce.token}`,
+        `wss://ya-praktikum.tech/ws/chats/${userID}/${chatID}/${tokenResponse.token}`,
     );
 
     socket.onopen = function () {
@@ -243,7 +259,13 @@ async function addChat(event: Event) {
     };
 
     const userAPI = new UserApi();
-    const userResponse: any = await userAPI.searchUser(login);
+    let userResponse: any;
+    try {
+        userResponse = await userAPI.searchUser(login);
+    } catch (error: any) {
+        console.log(`searchUser error:\n${error}`);
+    }
+
     const userFound = userResponse.find(
         (user: UserSearch) => user.login === login.login,
     );
@@ -258,7 +280,13 @@ async function addChat(event: Event) {
         const title: CreateChat = {
             title: userName,
         };
-        const createChatResponse: any = await chatsAPI.createChat(title);
+
+        let createChatResponse: any;
+        try {
+            createChatResponse = await chatsAPI.createChat(title);
+        } catch (error: any) {
+            console.log(`createChat error:\n${error}`);
+        }
 
         const users: number[] = [];
         users.push(userId);
@@ -270,7 +298,13 @@ async function addChat(event: Event) {
             chatId,
         };
 
-        const addUserResponse = await chatsAPI.addUser(addUserData);
+        let addUserResponse;
+
+        try {
+            addUserResponse = await chatsAPI.addUser(addUserData);
+        } catch (error: any) {
+            console.log(`addUser error:\n${error}`);
+        }
 
         if (addUserResponse) {
             const newChat = new ChatItemComponent({
