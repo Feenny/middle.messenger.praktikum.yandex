@@ -92,8 +92,7 @@ class HTTPTransport {
 
             if (data instanceof FormData) delete headers['Content-Type'];
             else
-                headers['Content-Type'] =
-                    headers['Content-Type'] || 'application/json;charset=UTF-8';
+                headers['Content-Type'] = headers['Content-Type'] || 'application/json;charset=UTF-8';
 
             Object.keys(headers).forEach((key) => {
                 xhr.setRequestHeader(key, headers[key]);
