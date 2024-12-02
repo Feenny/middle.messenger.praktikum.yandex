@@ -173,8 +173,6 @@ export class ChatPage extends Block {
 let socket: WebSocket;
 
 async function openChat(chatID: ChatId, СhatContainer: ChatContainerComponent) {
-    // const emptyMessageField = document.querySelector('.empty__messages');
-    // emptyMessageField?.classList.add('hidden');
     const input = document.querySelector('.chat__message-input');
     input?.classList.remove('hidden');
 
@@ -205,21 +203,27 @@ async function openChat(chatID: ChatId, СhatContainer: ChatContainerComponent) 
                 (message) =>
                     new ChatMessageComponent({
                         message: message.content,
+                        time: formatDate(message.time),
+                        userId: userID === message.user_id,
                     }),
             );
             СhatContainer.lists.Messages = messageArray;
             СhatContainer.setProps({ a: 1 });
-            if (messageArray.length > 0) {
-                const emptyMessageField =
-                    document.querySelector('.empty__messages');
-                emptyMessageField?.classList.add('hidden');
-            }
+            hideEmptyMessage(messageArray);
+            // if (messageArray.length > 0) {
+            //     const emptyMessageField =
+            //         document.querySelector('.empty__messages');
+            //     emptyMessageField?.classList.add('hidden');
+            // }
         } else if (messages) {
             const messageComponent = new ChatMessageComponent({
                 message: messages.content,
+                time: formatDate(messages.time),
+                userId: userID === messages.user_id,
             });
             СhatContainer.lists.Messages.unshift(messageComponent);
             СhatContainer.setProps({ a: 1 });
+            hideEmptyMessage(messageComponent);
         }
     });
 
@@ -306,5 +310,30 @@ function sendMessage(event: Event) {
             }),
         );
         input.value = '';
+    }
+}
+
+function formatDate(messageTime: Date) {
+    const date = new Date(messageTime);
+
+    const formattedDate =
+        [
+            String(date.getDate()).padStart(2, '0'),
+            String(date.getMonth() + 1).padStart(2, '0'),
+            String(date.getFullYear()).slice(-2),
+        ].join('.') +
+        ' ' +
+        [
+            String(date.getHours()).padStart(2, '0'),
+            String(date.getMinutes()).padStart(2, '0'),
+        ].join(':');
+
+    return formattedDate;
+}
+
+function hideEmptyMessage(messages: Object | Array<Object>) {
+    if (messages) {
+        const emptyMessageField = document.querySelector('.empty__messages');
+        emptyMessageField?.classList.add('hidden');
     }
 }
