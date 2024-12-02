@@ -1,3 +1,4 @@
+/* eslint-disable prefer-promise-reject-errors */
 import queryStringify from '../utils/queryStringify';
 
 const METHODS = {
@@ -51,7 +52,6 @@ class HTTPTransport {
         url: string,
         options: RequestOptions = {},
     ): Promise<XMLHttpRequest> => {
-        console.log(`POST: ${this.request.status}`);
         return this.request(
             `${this.apiUrl}${url}`,
             { ...options, method: METHODS.POST },
@@ -70,9 +70,6 @@ class HTTPTransport {
         );
     };
 
-    // options:
-    // headers — obj
-    // data — obj
     request = (
         url: string,
         options: RequestOptions,
@@ -95,8 +92,7 @@ class HTTPTransport {
 
             if (data instanceof FormData) delete headers['Content-Type'];
             else
-                headers['Content-Type'] =
-                    headers['Content-Type'] || 'application/json;charset=UTF-8';
+                headers['Content-Type'] = headers['Content-Type'] || 'application/json;charset=UTF-8';
 
             Object.keys(headers).forEach((key) => {
                 xhr.setRequestHeader(key, headers[key]);

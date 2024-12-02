@@ -184,7 +184,7 @@ export default class Block {
     }
 
     render() {
-        return this.getContent();
+        // return this.getContent();
     }
 
     getContent() {

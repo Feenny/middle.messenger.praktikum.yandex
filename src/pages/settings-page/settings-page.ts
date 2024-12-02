@@ -259,19 +259,19 @@ async function changeProfile(event: Event) {
     console.log('changeProfile');
     const form = event.target as HTMLFormElement;
 
-    const formFirstName = form.querySelector(`[name="first_name"]`);
+    const formFirstName = form.querySelector('[name="first_name"]');
     const formFirstNameValue = (formFirstName as HTMLInputElement).value;
 
-    const formSecondName = form.querySelector(`[name="second_name"]`);
+    const formSecondName = form.querySelector('[name="second_name"]');
     const formSecondNameValue = (formSecondName as HTMLInputElement).value;
 
-    const formLogin = form.querySelector(`[name="login"]`);
+    const formLogin = form.querySelector('[name="login"]');
     const formLoginValue = (formLogin as HTMLInputElement).value;
 
-    const formEmail = form.querySelector(`[name="email"]`);
+    const formEmail = form.querySelector('[name="email"]');
     const formEmailValue = (formEmail as HTMLInputElement).value;
 
-    const formPhone = form.querySelector(`[name="phone"]`);
+    const formPhone = form.querySelector('[name="phone"]');
     const formPhoneValue = (formPhone as HTMLInputElement).value;
 
     const userData: ChangeUserData = {
@@ -287,11 +287,11 @@ async function changeProfile(event: Event) {
     await authApi.changeProfile(userData);
 
     const fileInput = document.querySelector('.avatar__input'); // Изменено для выбора по классу
-    const file = fileInput.files[0]; // Получаем выбранный файл
+    const file = fileInput?.files[0]; // Получаем выбранный файл
 
     if (file) {
         const formData = new FormData(form);
-        const avatar = form.querySelector(`[name="avatar"]`);
+        const avatar = form.querySelector('[name="avatar"]');
         const avatarValue = (avatar as HTMLInputElement).value;
         formData.append('avatar', avatarValue);
         await authApi.changeAvatar(formData);
