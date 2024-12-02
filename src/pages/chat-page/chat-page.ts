@@ -4,7 +4,7 @@ import ChatsApi from '../../api/chats';
 import AuthApi from '../../api/auth';
 import UserApi from '../../api/user';
 import ChatPageTemplate from './chat-page.hbs?raw';
-import Block, { IProps } from '../../tools/Block';
+import Block from '../../tools/Block';
 import { Button } from '../../components/button';
 import { ChatContainer } from '../../components/chat-container';
 import { ChatForm } from '../../components/chat-form';
@@ -138,13 +138,13 @@ export class ChatPage extends Block {
 
     async getChatsList() {
         const chatsApi = new ChatsApi();
-        const responce = await chatsApi.getChats();
+        const responce : any = await chatsApi.getChats();
         document.querySelector('.empty__messages').textContent = 'Выберите чат или создайте его';
         const emptyMessageField = document.querySelector('.empty__messages');
         emptyMessageField?.classList.remove('hidden');
 
         const chatsArray = responce.map(
-            (chat) =>
+            (chat: any) =>
                 new ChatItemComponent({
                     name: chat.title,
                     message: chat.last_message
@@ -241,8 +241,8 @@ async function addChat(event: Event) {
     };
 
     const userAPI = new UserApi();
-    const userResponse = await userAPI.searchUser(login);
-    const userFound = userResponse.find((user) => user.login === login.login);
+    const userResponse : any = await userAPI.searchUser(login);
+    const userFound = userResponse.find((user: UserSearch) => user.login === login.login);
 
     if (userFound) {
         const userId = userFound.id;
