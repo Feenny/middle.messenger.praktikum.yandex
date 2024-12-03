@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 /* eslint-disable operator-linebreak */
 /* eslint-disable implicit-arrow-linebreak */
 import './chat-page.scss';
@@ -350,13 +351,44 @@ async function addUser(event: Event) {
 
 async function deleteUser(event: Event) {
     event.preventDefault();
-    const addChatForm = event.target as HTMLFormElement;
-    const addChatSearch = addChatForm.querySelector('[name="search"]');
-    const login: UserSearch = {
-        login: (addChatSearch as HTMLInputElement).value,
-    };
 
-    console.log(`DELETE LOGIN: ${login}`);
+    const inputElement: any = document.querySelector(
+        '.input__element.input__login-search',
+    );
+
+    if (inputElement) {
+        const login: UserSearch = {
+            login: inputElement.value,
+        };
+
+        const userAPI = new UserApi();
+        let userResponse: any;
+        try {
+            userResponse = await userAPI.searchUser(login);
+        } catch (error: any) {
+            console.log(`searchUser error:\n${error}`);
+        }
+
+        const userFound = userResponse.find(
+            (user: UserSearch) => user.login === login.login,
+        );
+
+        const users: number[] = [];
+        const userId = userFound.id;
+        users.push(userId);
+        const chatId: any = currentChatID;
+        const deleteUserData: ChatAddUser = {
+            users,
+            chatId,
+        };
+
+        const chatsAPI = new ChatsApi();
+        try {
+            await chatsAPI.deleteUser(deleteUserData);
+        } catch (error: any) {
+            console.log(`deleteUser error:\n${JSON.stringify(error)}`);
+        }
+    }
 }
 
 async function addChat(event: Event) {
@@ -527,10 +559,9 @@ async function addUserToChat(userFound: any, chatId: any) {
     };
 
     const chatsAPI = new ChatsApi();
-    let addUserResponse: any;
 
     try {
-        addUserResponse = await chatsAPI.addUser(addUserData);
+        await chatsAPI.addUser(addUserData);
     } catch (error: any) {
         console.log(`addUser error:\n${error}`);
     }

@@ -13,7 +13,6 @@ export default class ChatsApi {
     }
 
     async createChat(data: CreateChat) {
-        console.log(`createChat data:\n ${data}`);
         return this.httpTransport.post('/', {
             data,
             headers: {
@@ -23,7 +22,6 @@ export default class ChatsApi {
     }
 
     async delete(data: ChatId) {
-        console.log(`delete data:\n ${data}`);
         return this.httpTransport.delete('/', {
             data,
             headers: {
@@ -34,6 +32,16 @@ export default class ChatsApi {
 
     async addUser(data: ChatAddUser) {
         return this.httpTransport.put('/users', {
+            data,
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+    }
+
+    async deleteUser(data: ChatAddUser) {
+        console.log(`DELETE USER Data:\n ${JSON.stringify(data)}`);
+        return this.httpTransport.delete('/users', {
             data,
             headers: {
                 'Content-Type': 'application/json',
