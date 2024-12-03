@@ -27,6 +27,7 @@
   }
 
   &__avatar {
+    object-fit: cover;
     grid-area: a;
     background: $gray-light-color;
     height: 47px;
@@ -80,6 +81,9 @@
 
 .chat-item:hover {
   background-color: #f3f3f4;
+  .chat-item__delete {
+    display: block;
+  }
 }
 
 .chat-item__active {
@@ -87,6 +91,7 @@
 }
 
 .chat-item__delete {
+  display: none;
   padding: 0;
   font-weight: 300;
   background: none;

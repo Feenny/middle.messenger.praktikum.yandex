@@ -69,8 +69,7 @@ export default class Block {
     }
 
     _componentDidMount() {
-        this.componentDidMount();
-        console.log('CDM');
+        this.componentDidMount()
         Object.values(this.children).forEach((child) => {
             child.dispatchComponentDidMount();
         });
@@ -91,7 +90,7 @@ export default class Block {
     }
 
     componentDidUpdate(oldProps: IProps, newProps: IProps) {
-        if (oldProps && newProps) console.log(oldProps, oldProps);
+        if (oldProps && newProps) console.log(oldProps, newProps);
         return true;
     }
 

@@ -59,14 +59,15 @@ svg {
   top: 100%;
   left: 0;
   background-color: white;
-  border: 1px solid #e6e6e6;
-  border-radius: 6px;
+  border: 1px solid rgba(231, 231, 233, 0.5);
+  box-shadow: 0px 15px 50px 0px rgba(27, 32, 50, 0.1);
+  border-radius: 12px;
   margin-top: -2px;
   z-index: 1000;
 }
 
-.burger-menu:hover .popup-menu,
-.popup-menu:hover {
+.burger-menu:hover #chat__user-control,
+#chat__user-control:hover {
   display: block; /* Это позволяет сохранять меню открытым при наведении */
 }
 
@@ -76,4 +77,18 @@ svg {
 
 .popup-menu li {
   padding:12px;
+}
+
+
+.popup-menu li a{
+  text-decoration: none;
+}
+
+.popup-menu li:hover{
+  background-color: rgba(231, 231, 233, 0.5);
+  text-decoration: none;
+
+  a{
+    color: $link-color-2;
+  }
 }

@@ -36,3 +36,20 @@
 .chat__link {
   margin-top: 16px;
 }
+
+.chat__set-users{
+  width: 380px;
+  display: flex;
+  gap: 5%;
+}
+
+.chat__set-users button {
+  font-weight: 400;
+  font-size: 14px;
+  margin-top: 0;
+  // width: 80%;
+}
+
+.chat__set-users form {
+  width: 50%;
+}

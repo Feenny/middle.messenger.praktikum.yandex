@@ -2,6 +2,7 @@ export { Avatar } from './avatar';
 export { Button } from './button';
 export { BurgerMenu } from './burger-menu';
 export { ChatContainer } from './chat-container';
+export { ChatDelete } from './chat-delete';
 export { ChatForm } from './chat-form';
 export { ChatItem } from './chat-item';
 export { ChatList } from './chat-list';
