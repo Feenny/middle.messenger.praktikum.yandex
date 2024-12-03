@@ -9,7 +9,10 @@
   padding-inline: 16px;
 }
 
-@import "../../assets/variables";
+.burger-menu {
+  position: relative;
+  display: inline-block;
+}
 
 .chat-search {
   display: flex;
@@ -48,4 +51,29 @@ svg {
   left: $input-search-offset-left;
   position: absolute;
   color: $search-placeholder-color;
+}
+
+.popup-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  border: 1px solid #e6e6e6;
+  border-radius: 6px;
+  margin-top: -2px;
+  z-index: 1000;
+}
+
+.burger-menu:hover .popup-menu,
+.popup-menu:hover {
+  display: block; /* Это позволяет сохранять меню открытым при наведении */
+}
+
+.popup-menu ul {
+  padding:0;
+}
+
+.popup-menu li {
+  padding:12px;
 }

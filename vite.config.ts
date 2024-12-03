@@ -9,7 +9,6 @@ export default defineConfig({
     build: {
         outDir: resolve(__dirname, 'dist'),
     },
-    base: './',
     server: {
         host: 'localhost',
         port: 3000,

@@ -12,9 +12,9 @@
     width: 100%;
     display: grid;
     grid-template:
-      "a n n" 22px
-      "a m u" 24px
-      / 47px 1fr 50px;
+      "a n n d" 22px
+      "a m u u" 24px
+      / 47px 1fr 50px 80px; // Увеличиваем ширину для кнопки
     gap: 0 10px;
     padding: 12px 10px;
     box-sizing: border-box;
@@ -84,4 +84,18 @@
 
 .chat-item__active {
   background-color: #edf0ff;
+}
+
+.chat-item__delete {
+  padding: 0;
+  font-weight: 300;
+  background: none;
+  color: $link-color;
+  border: none;
+}
+
+.chat-item__delete:hover {
+  cursor: pointer;
+  color: $link-color-2;
+  font-weight: 500;
 }
