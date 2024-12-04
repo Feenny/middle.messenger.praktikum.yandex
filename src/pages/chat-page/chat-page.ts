@@ -380,8 +380,6 @@ async function openChat(chatID: ChatId, СhatContainer: ChatContainerComponent) 
 }
 
 async function setModal() {
-    const modal = document.getElementById('modal');
-
     const addUserBut = document.getElementById('button__add-user');
     const deleteUserBut = document.getElementById('button__delete-user');
 
@@ -392,10 +390,6 @@ async function setModal() {
             ? (addUserForm.children.Button = addUserButton)
             : (addUserForm.children.Button = deleteUserButton);
         addUserForm.setProps({ a: 1 });
-    }
-
-    function closeModal() {
-        modalComponent.setProps({ className: 'modal-hide' });
     }
 
     if (addUserBut)
