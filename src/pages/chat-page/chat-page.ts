@@ -91,7 +91,9 @@ const chatList = new ChatListComponent({
 });
 
 const chatForm = new ChatFormComponent({
-    Input: new InputComponent({}),
+    Input: new InputComponent({
+        placeholder: 'Написать сообщение...',
+    }),
     events: {
         submit: (event: Event) => {
             sendMessage(event);
@@ -111,6 +113,12 @@ const searchLogin = new InputComponent({
     placeholder: 'Введите логин пользователя',
 });
 
+const titleInput = new InputComponent({
+    name: 'title',
+    className: 'input__login-search',
+    placeholder: 'Введите название чата',
+});
+
 const addUserButton = new ButtonComponent({
     className: 'button__add-user',
     type: 'submit',
@@ -125,11 +133,6 @@ const addUserButton = new ButtonComponent({
 const addUserForm = new FormCompoment({
     Input: searchLogin,
     Button: addUserButton,
-    // events: {
-    //     submit: (event: Event) => {
-    //         addUser(event);
-    //     },
-    // },
 });
 
 const deleteUserButton = new ButtonComponent({
@@ -155,7 +158,7 @@ const addChatButton = new ButtonComponent({
 });
 
 const addChatForm = new FormCompoment({
-    Input: searchLogin,
+    Input: [searchLogin, titleInput],
     Button: addChatButton,
     events: {
         submit: (event: Event) => {
@@ -493,15 +496,15 @@ function sendMessage(event: Event) {
         '.input__element',
     );
 
-    if (input) {
+    if (input.value.trim()) {
         socket.send(
             JSON.stringify({
                 content: input.value,
                 type: 'message',
             }),
         );
-        input.value = '';
     }
+    input.value = '';
 }
 
 function formatDate(messageTime: Date) {

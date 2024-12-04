@@ -39,6 +39,7 @@ export class Route {
     }
 
     _renderDom(query: string, block: Block) {
+        console.log(`renderDom: ${query}`);
         const root = document.querySelector(query);
         root?.append(block.getContent());
     }

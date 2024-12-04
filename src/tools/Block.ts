@@ -69,7 +69,7 @@ export default class Block {
     }
 
     _componentDidMount() {
-        this.componentDidMount()
+        this.componentDidMount();
         Object.values(this.children).forEach((child) => {
             child.dispatchComponentDidMount();
         });
@@ -90,7 +90,7 @@ export default class Block {
     }
 
     componentDidUpdate(oldProps: IProps, newProps: IProps) {
-        if (oldProps && newProps) console.log(oldProps, newProps);
+        if (oldProps && newProps) console.log(oldProps, oldProps);
         return true;
     }
 
@@ -214,12 +214,8 @@ export default class Block {
     }
 
     show() {
-        // const app = document.getElementById('app');
-        // const htmlElement = this.getContent();
-        // if (!app?.firstElementChild) app?.append(document.createElement('div'));
-        // if (htmlElement) app?.firstElementChild?.replaceWith(htmlElement);
-        // const content: any = this.getContent();
-        this.getContent().style.display = 'block';
+        const content = this.getContent() as HTMLElement | null;
+        if (content) content.style.display = 'flex';
     }
 
     hide() {
