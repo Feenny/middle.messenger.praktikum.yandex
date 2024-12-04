@@ -219,6 +219,9 @@ export class ChatPage extends Block {
                         },
                     }),
                     avatar: (() => {
+                        if (chat.avatar) {
+                            return `https://ya-praktikum.tech/api/v2/resources${chat.avatar}`;
+                        }
                         if (
                             chat.last_message &&
                             chat.last_message.user &&
@@ -400,6 +403,9 @@ async function addChat(event: Event) {
     const addChatForm = event.target as HTMLFormElement;
 
     const addChatSearch = addChatForm.querySelector('[name="search"]');
+    const addChatTitle = addChatForm.querySelector(
+        '[name="title"]',
+    ) as HTMLInputElement | null;
     const login: UserSearch = {
         login: (addChatSearch as HTMLInputElement).value,
     };
@@ -425,7 +431,10 @@ async function addChat(event: Event) {
         const userName = userFound.first_name;
         userAvatar = userFound.avatar;
         title = {
-            title: userName,
+            title:
+                addChatTitle && addChatTitle.value
+                    ? addChatTitle.value
+                    : userName,
         };
     }
 
