@@ -18,6 +18,7 @@ export { InputField } from './input-field';
 export { InputForm } from './input-form';
 export { Link } from './link';
 export { Logout } from './logout';
+export { Modal } from './modal';
 export { PageTitle } from './page-title';
 export { SidebarImg } from './sidebar-img';
 export { SettingsItem } from './settings-item';

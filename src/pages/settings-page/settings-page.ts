@@ -237,7 +237,7 @@ export class SettingsPage extends Block {
     }
 
     override render() {
-        console.log(this.getUserInfo());
+        this.getUserInfo();
         return '{{{ SettingsTemplate }}}';
     }
 
@@ -249,7 +249,6 @@ export class SettingsPage extends Block {
         } catch (err) {
             console.log(`userInfo error:\n${err}`);
         }
-        console.log(`response: ${JSON.stringify(response)}`);
         pageTitle.setProps({ title: response.display_name });
 
         avatar.setProps({
@@ -283,7 +282,6 @@ function setImage() {
 
 async function changeProfile(event: Event) {
     event.preventDefault();
-    console.log('changeProfile');
     const form = event.target as HTMLFormElement;
 
     const formFirstName = form.querySelector('[name="first_name"]');

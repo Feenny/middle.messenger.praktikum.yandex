@@ -22,7 +22,6 @@ export class Route {
 
     navigate(pathname: string) {
         if (this.match(pathname)) {
-            console.log(`${pathname} pathname`);
             this._pathname = pathname;
             this.render();
         }
@@ -39,7 +38,6 @@ export class Route {
     }
 
     _renderDom(query: string, block: Block) {
-        console.log(`renderDom: ${query}`);
         const root = document.querySelector(query);
         root?.append(block.getContent());
     }

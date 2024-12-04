@@ -1,3 +1,4 @@
+/* eslint-disable operator-linebreak */
 /* eslint-disable func-names */
 /* eslint-disable prefer-promise-reject-errors */
 import queryStringify from '../utils/queryStringify';
@@ -103,8 +104,6 @@ class HTTPTransport {
             xhr.timeout = timeout;
 
             xhr.onload = function () {
-                console.log(`STATUS: ${this.status}`);
-
                 if (this.status >= 200 && this.status < 300) {
                     if (
                         this.getResponseHeader('content-type')?.startsWith(

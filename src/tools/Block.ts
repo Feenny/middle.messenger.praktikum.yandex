@@ -124,8 +124,6 @@ export default class Block {
         if (!nextProps) {
             return;
         }
-        console.log(`thisProps: ${JSON.stringify(this.props)}`);
-        console.log(`setProps: ${JSON.stringify(nextProps)}`);
         Object.assign(this.props, nextProps);
     };
 

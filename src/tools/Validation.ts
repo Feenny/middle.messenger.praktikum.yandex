@@ -21,7 +21,6 @@ export function checkValidate(
         errorMessage.style.display = 'none';
         validationResult = true;
     } else {
-        console.log('invalid');
         input.classList.add('invalid');
         errorMessage.style.display = 'block';
         validationResult = false;
@@ -39,21 +38,15 @@ export function formValidate(event: Event, canLogin: boolean) {
         if (!input.classList.contains('valid')) {
             input.classList.add('invalid');
         } else {
-            console.log('You can go');
             window.router.go('/chat');
-            // input.classList.add('invalid');
         }
     }
 
-    console.log(`can login state: ${canLogin}`);
     if (canLogin) {
-        console.log('you can login! =)');
         window.router.go('/chat');
     } else {
         console.log('you cant login... =(');
     }
-    console.dir(`event: ${event} `);
-    console.log('form validate');
 }
 
 export const nameValidation: ValidationFunction = (value) => {
@@ -81,4 +74,5 @@ export const phoneValidation: ValidationFunction = (value) => {
     return regex.test(value);
 };
 
-export const messageValidation: ValidationFunction = (value) => value.trim() !== '';
+export const messageValidation: ValidationFunction = (value) =>
+    value.trim() !== '';

@@ -53,3 +53,12 @@
 .chat__set-users form {
   width: 50%;
 }
+
+.button__add-user,
+.button__delete-user {
+  margin-top: 0;
+}
+
+.input-field__title {
+  align-self: flex-start;
+}

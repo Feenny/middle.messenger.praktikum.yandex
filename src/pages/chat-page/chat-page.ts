@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable prefer-destructuring */
 /* eslint-disable operator-linebreak */
 /* eslint-disable implicit-arrow-linebreak */
@@ -16,6 +17,8 @@ import { ChatList } from '../../components/chat-list';
 import { ChatMessage } from '../../components/chat-message';
 import { Form } from '../../components/form';
 import { Input } from '../../components/input';
+import { InputField } from '../../components/input-field';
+import { Modal } from '../../components/modal';
 import { Header } from '../../components/header';
 import { ChatId, ChatAddUser, UserSearch, CreateChat } from '../../api/types';
 
@@ -79,6 +82,18 @@ class InputComponent extends Block {
     }
 }
 
+class InputFieldComponent extends Block {
+    render() {
+        return InputField;
+    }
+}
+
+class ModalComponent extends Block {
+    render() {
+        return Modal;
+    }
+}
+
 class HeaderComponent extends Block {
     render() {
         return Header;
@@ -88,22 +103,6 @@ class HeaderComponent extends Block {
 const chatList = new ChatListComponent({
     Chats: [],
     className: 'chat-page__list',
-});
-
-const chatForm = new ChatFormComponent({
-    Input: new InputComponent({
-        placeholder: 'Написать сообщение...',
-    }),
-    events: {
-        submit: (event: Event) => {
-            sendMessage(event);
-        },
-    },
-});
-
-const chatContainer = new ChatContainerComponent({
-    Messages: [],
-    ChatForm: chatForm,
 });
 
 const searchLogin = new InputComponent({
@@ -130,8 +129,22 @@ const addUserButton = new ButtonComponent({
     },
 });
 
+const loginInput = new InputComponent({
+    name: 'login',
+    value: 'Fenya',
+    className: 'input__login-search',
+    placeholder: 'Введите логин пользователя',
+});
+
+const loginInputField = new InputFieldComponent({
+    className: 'input__modal',
+    errorMessage: 'Логин должен включать латиницу, от 3 до 20 символов',
+    title: 'Логин',
+    Input: loginInput,
+});
+
 const addUserForm = new FormCompoment({
-    Input: searchLogin,
+    Input: loginInputField,
     Button: addUserButton,
 });
 
@@ -139,17 +152,21 @@ const deleteUserButton = new ButtonComponent({
     className: 'button__delete-user',
     type: 'submit',
     text: 'Удалить пользователя',
-});
-
-const deleteUserForm = new FormCompoment({
-    Input: searchLogin,
-    Button: deleteUserButton,
     events: {
-        submit: (event: Event) => {
+        click: (event: Event) => {
             deleteUser(event);
         },
     },
 });
+
+// const deleteUserForm = new FormCompoment({
+//     Input: searchLogin,
+//     events: {
+//         submit: (event: Event) => {
+//             deleteUser(event);
+//         },
+//     },
+// });
 
 const addChatButton = new ButtonComponent({
     className: 'button__add-chat',
@@ -167,6 +184,39 @@ const addChatForm = new FormCompoment({
     },
 });
 
+const chatForm = new ChatFormComponent({
+    Input: new InputComponent({
+        placeholder: 'Написать сообщение...',
+    }),
+    events: {
+        submit: (event: Event) => {
+            sendMessage(event);
+        },
+    },
+});
+
+const modalComponent = new ModalComponent({
+    className: 'modal-hide',
+    AddUserForm: addUserForm,
+    events: {
+        click: (event: Event) => {
+            const modalClose = document.getElementById('modal-close');
+            if (
+                event.target === event.currentTarget ||
+                event.target === modalClose
+            ) {
+                modalComponent.setProps({ className: 'modal-hide' });
+            }
+        },
+    },
+});
+
+const chatContainer = new ChatContainerComponent({
+    Messages: [],
+    Modal: modalComponent,
+    ChatForm: chatForm,
+});
+
 export class ChatPage extends Block {
     constructor(props: { [key: string]: string }) {
         super({
@@ -175,8 +225,8 @@ export class ChatPage extends Block {
                 Header: new HeaderComponent({}),
                 ChatList: chatList,
                 ChatContainer: chatContainer,
-                AddUserForm: addUserForm,
-                DeleteUserForm: deleteUserForm,
+                // AddUserForm: addUserForm,
+                // DeleteUserForm: deleteUserForm,
                 AddChatForm: addChatForm,
             }),
         });
@@ -250,6 +300,7 @@ let socket: WebSocket;
 let currentChatID: ChatId;
 
 async function openChat(chatID: ChatId, СhatContainer: ChatContainerComponent) {
+    setModal();
     currentChatID = chatID;
     const input = document.querySelector('.chat__message-input');
     input?.classList.remove('hidden');
@@ -319,9 +370,6 @@ async function openChat(chatID: ChatId, СhatContainer: ChatContainerComponent) 
             hideEmptyMessage(messageComponent);
 
             if (userResponse.avatar) {
-                console.log(
-                    `USER AVATAAAAAR https://ya-praktikum.tech/api/v2/resources${userResponse.avatar}`,
-                );
                 updateAvatar(
                     chatID,
                     `https://ya-praktikum.tech/api/v2/resources${userResponse.avatar}`,
@@ -329,6 +377,31 @@ async function openChat(chatID: ChatId, СhatContainer: ChatContainerComponent) 
             }
         }
     });
+}
+
+async function setModal() {
+    const modal = document.getElementById('modal');
+
+    const addUserBut = document.getElementById('button__add-user');
+    const deleteUserBut = document.getElementById('button__delete-user');
+
+    function openModal(action: string) {
+        modalComponent.setProps({ className: 'modal-visible' });
+
+        action === 'add'
+            ? (addUserForm.children.Button = addUserButton)
+            : (addUserForm.children.Button = deleteUserButton);
+        addUserForm.setProps({ a: 1 });
+    }
+
+    function closeModal() {
+        modalComponent.setProps({ className: 'modal-hide' });
+    }
+
+    if (addUserBut)
+        addUserBut.addEventListener('click', () => openModal('add'));
+    if (deleteUserBut)
+        deleteUserBut.addEventListener('click', () => openModal('delete'));
 }
 
 async function addUser(event: Event) {
@@ -358,6 +431,7 @@ async function addUser(event: Event) {
             addUserToChat(userFound, currentChatID);
         }
     }
+    modalComponent.setProps({ className: 'modal-hide' });
 }
 
 async function deleteUser(event: Event) {
@@ -400,6 +474,7 @@ async function deleteUser(event: Event) {
             console.log(`deleteUser error:\n${JSON.stringify(error)}`);
         }
     }
+    modalComponent.setProps({ className: 'modal-hide' });
 }
 
 async function addChat(event: Event) {
@@ -564,8 +639,6 @@ function updateAvatar(chatID: ChatId, newAvatar?: any) {
 }
 
 async function addUserToChat(userFound: any, chatId: any) {
-    console.log(`addUserToChatL userFound: ${userFound}`);
-    console.log(`addUserToChatL chatId: ${chatId}`);
     const users: number[] = [];
     const userId = userFound.id;
     users.push(userId);

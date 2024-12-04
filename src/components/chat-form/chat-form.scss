@@ -13,16 +13,16 @@
 
 .chat__user-control {
   text-align: center;
-  border-radius: 15px;
+  border-radius: 18px;
   color: white;
-  line-height: 30px;
-  width: 30px;
-  height: 30px;
+  line-height: 36px;
+  width: 36px;
+  height: 36px;
 
   background: linear-gradient(90deg, var(--myColor1), var(--myColor2) 100%);
 
   position: absolute;
-  bottom: 20px;
+  bottom: 17px;
   left: 20px;
   z-index: 1000;
 }
@@ -56,8 +56,8 @@
   background-color: rgb(225, 224, 243);
 }
 
-.chat__user-control_image{
-  padding: 13%;
-  width: 74%;
-  height: 74%;
+.chat__user-control_image {
+  padding: 17%;
+  width: 66%;
+  height: 66%;
 }

@@ -60,7 +60,7 @@ svg {
   left: 0;
   background-color: white;
   border: 1px solid rgba(231, 231, 233, 0.5);
-  box-shadow: 0px 15px 50px 0px rgba(27, 32, 50, 0.144);
+  box-shadow: 0px 5px 50px 0px rgba(27, 32, 50, 0.144);
   border-radius: 12px;
   margin-top: -2px;
   z-index: 1000;
@@ -73,23 +73,22 @@ svg {
 }
 
 .popup-menu ul {
-  padding:0;
+  padding: 0;
 }
 
 .popup-menu li {
-  padding:12px;
+  padding: 12px;
 }
 
-
-.popup-menu li a{
+.popup-menu li a {
   text-decoration: none;
 }
 
-.popup-menu li:hover{
+.popup-menu li:hover {
   background-color: rgba(231, 231, 233, 0.5);
   text-decoration: none;
 
-  a{
+  a {
     color: $link-color-2;
   }
 }

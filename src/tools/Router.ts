@@ -55,9 +55,7 @@ class Router {
     }
 
     go(pathname: string) {
-        console.log(`go: ${pathname}`)
         this.history?.pushState({}, '', pathname);
-        console.log(`this.history: ${this.history?.state}`)
         this._onRoute(pathname);
     }
 
