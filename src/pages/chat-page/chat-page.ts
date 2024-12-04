@@ -286,7 +286,12 @@ async function openChat(chatID: ChatId, СhatContainer: ChatContainerComponent) 
     };
 
     socket.addEventListener('message', (e) => {
-        const messages = JSON.parse(e.data);
+        let messages;
+        try {
+            messages = JSON.parse(e.data);
+        } catch (error) {
+            console.error('Ошибка при парсинге JSON:', error);
+        }
 
         if (Array.isArray(messages)) {
             const messageArray = messages.map(

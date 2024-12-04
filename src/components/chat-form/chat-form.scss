@@ -23,7 +23,7 @@
 
   position: absolute;
   bottom: 20px;
-  left: 30px;
+  left: 20px;
   z-index: 1000;
 }
 
@@ -54,4 +54,10 @@
 #chat__user-control_menu button:hover {
   cursor: pointer;
   background-color: rgb(225, 224, 243);
+}
+
+.chat__user-control_image{
+  padding: 13%;
+  width: 74%;
+  height: 74%;
 }

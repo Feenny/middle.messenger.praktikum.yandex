@@ -61,6 +61,25 @@ class InputFieldComponent extends Block {
     }
 }
 
+const inputDisplayName = new InputComponent({
+    name: 'display_name',
+    title: 'Отображаемое имя',
+    type: 'display_name',
+    placeholder: 'Введите отображаемое имя',
+    events: {
+        blur: (event: Event) => {
+            checkValidate(event, nameValidation, 'name');
+        },
+    },
+});
+
+const inputFieldDisplayName = new InputFieldComponent({
+    errorMessage: 'Отображаемое имя введено некорректно',
+    className: 'login-page__input',
+    title: 'Отображаемое имя',
+    Input: inputDisplayName,
+});
+
 const inputName = new InputComponent({
     name: 'first_name',
     title: 'Имя',
@@ -190,6 +209,7 @@ const settingsFormComponent = new SettingsFormComponent({
     Avatar: avatar,
     InputName: [inputFieldName, inputFieldSurname],
     InputContent: [
+        inputFieldDisplayName,
         inputFieldPassword,
         inputFieldLogin,
         inputFieldEmail,
@@ -230,7 +250,7 @@ export class SettingsPage extends Block {
             console.log(`userInfo error:\n${err}`);
         }
         console.log(`response: ${JSON.stringify(response)}`);
-        pageTitle.setProps({ title: response.first_name });
+        pageTitle.setProps({ title: response.display_name });
 
         avatar.setProps({
             avatar: `https://ya-praktikum.tech/api/v2/resources${response.avatar}`,
@@ -239,9 +259,11 @@ export class SettingsPage extends Block {
         inputName.setProps({ value: response.first_name });
         inputSurname.setProps({ value: response.second_name });
         inputPassword.setProps({ value: response.password });
+        inputDisplayName.setProps({ value: response.display_name });
         inputLogin.setProps({ value: response.login });
         inputEmail.setProps({ value: response.email });
         inputPhone.setProps({ value: response.phone });
+        settingsFormComponent.setProps({ a: 1 });
     }
 }
 
@@ -270,6 +292,9 @@ async function changeProfile(event: Event) {
     const formSecondName = form.querySelector('[name="second_name"]');
     const formSecondNameValue = (formSecondName as HTMLInputElement).value;
 
+    const formDisplayName = form.querySelector('[name="display_name"]');
+    const formDisplayNameValue = (formDisplayName as HTMLInputElement).value;
+
     const formLogin = form.querySelector('[name="login"]');
     const formLoginValue = (formLogin as HTMLInputElement).value;
 
@@ -279,10 +304,12 @@ async function changeProfile(event: Event) {
     const formPhone = form.querySelector('[name="phone"]');
     const formPhoneValue = (formPhone as HTMLInputElement).value;
 
+    pageTitle.setProps({ title: formDisplayNameValue });
+
     const userData: ChangeUserData = {
         first_name: formFirstNameValue,
         second_name: formSecondNameValue,
-        display_name: '',
+        display_name: formDisplayNameValue,
         login: formLoginValue,
         email: formEmailValue,
         phone: formPhoneValue,

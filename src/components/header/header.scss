@@ -60,7 +60,7 @@ svg {
   left: 0;
   background-color: white;
   border: 1px solid rgba(231, 231, 233, 0.5);
-  box-shadow: 0px 15px 50px 0px rgba(27, 32, 50, 0.1);
+  box-shadow: 0px 15px 50px 0px rgba(27, 32, 50, 0.144);
   border-radius: 12px;
   margin-top: -2px;
   z-index: 1000;
@@ -68,7 +68,8 @@ svg {
 
 .burger-menu:hover #chat__user-control,
 #chat__user-control:hover {
-  display: block; /* Это позволяет сохранять меню открытым при наведении */
+  display: block;
+  min-width: 150px;
 }
 
 .popup-menu ul {

@@ -93,7 +93,8 @@ class HTTPTransport {
 
             if (data instanceof FormData) delete headers['Content-Type'];
             else
-                headers['Content-Type'] = headers['Content-Type'] || 'application/json;charset=UTF-8';
+                headers['Content-Type'] =
+                    headers['Content-Type'] || 'application/json;charset=UTF-8';
 
             Object.keys(headers).forEach((key) => {
                 xhr.setRequestHeader(key, headers[key]);
@@ -110,17 +111,29 @@ class HTTPTransport {
                             'application/json',
                         )
                     ) {
-                        const data = JSON.parse(this.response);
-                        resolve(data);
+                        try {
+                            const data = JSON.parse(this.response);
+                            resolve(data);
+                        } catch (error) {
+                            console.error('Ошибка при парсинге JSON:', error);
+                            reject(new Error('Некорректный JSON в ответе'));
+                        }
                     } else resolve(this.response);
                 } else if (this.response) {
-                    const responseObject = JSON.parse(this.responseText);
-                    if (responseObject.reason === 'User already in system') {
-                        resolve(data);
+                    try {
+                        const responseObject = JSON.parse(this.responseText);
+                        if (
+                            responseObject.reason === 'User already in system'
+                        ) {
+                            resolve(data);
+                        }
+                    } catch (error) {
+                        console.error('Ошибка при парсинге JSON:', error);
+                        reject(new Error('Некорректный JSON в ответе'));
                     }
 
                     window.router.go('/404');
-                    reject(JSON.parse(this.response));
+                    reject(this.response);
                 } else {
                     reject(new Error());
                 }
