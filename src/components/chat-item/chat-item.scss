@@ -4,7 +4,6 @@
   &__line {
     height: 1px;
     background: $divider-line-color;
-    margin: 2px 0;
     padding: 0 10px;
   }
 
@@ -13,9 +12,9 @@
     width: 100%;
     display: grid;
     grid-template:
-      "a n n" 22px
-      "a m u" 24px
-      / 47px 1fr 50px;
+      "a n n d" 22px
+      "a m u u" 24px
+      / 47px 1fr 50px 80px; // Увеличиваем ширину для кнопки
     gap: 0 10px;
     padding: 12px 10px;
     box-sizing: border-box;
@@ -28,6 +27,7 @@
   }
 
   &__avatar {
+    object-fit: cover;
     grid-area: a;
     background: $gray-light-color;
     height: 47px;
@@ -81,8 +81,26 @@
 
 .chat-item:hover {
   background-color: #f3f3f4;
+  .chat-item__delete {
+    display: block;
+  }
 }
 
 .chat-item__active {
   background-color: #edf0ff;
+}
+
+.chat-item__delete {
+  display: none;
+  padding: 0;
+  font-weight: 300;
+  background: none;
+  color: $link-color;
+  border: none;
+}
+
+.chat-item__delete:hover {
+  cursor: pointer;
+  color: $link-color-2;
+  font-weight: 500;
 }

@@ -1,0 +1,63 @@
+@import "../../assets/variables";
+@property --myColor1 {
+  syntax: "<color>";
+  initial-value: $link-color;
+  inherits: false;
+}
+
+@property --myColor2 {
+  syntax: "<color>";
+  initial-value: $link-color-2;
+  inherits: false;
+}
+
+.chat__user-control {
+  text-align: center;
+  border-radius: 18px;
+  color: white;
+  line-height: 36px;
+  width: 36px;
+  height: 36px;
+
+  background: linear-gradient(90deg, var(--myColor1), var(--myColor2) 100%);
+
+  position: absolute;
+  bottom: 17px;
+  left: 20px;
+  z-index: 1000;
+}
+
+.chat__user-control:hover + #chat__user-control_menu,
+#chat__user-control_menu:hover {
+  display: block;
+}
+
+#chat__user-control_menu.popup-menu {
+  background-color: rgba(255, 255, 255, 0.959);
+  bottom: 70%;
+  top: auto;
+  z-index: 10000;
+}
+#chat__user-control_menu li {
+  padding: 0;
+}
+#chat__user-control_menu button {
+  color: rgb(71, 63, 116);
+  font-size: bold;
+  height: 36px;
+  width: 100%;
+  border: none;
+  padding: 0 20px;
+  background-color: rgba(255, 255, 255, 0);
+}
+
+#chat__user-control_menu button:hover {
+  cursor: pointer;
+  background-color: rgb(225, 224, 243);
+}
+
+.chat__user-control_image {
+  padding: 17%;
+  width: 66%;
+  height: 66%;
+}

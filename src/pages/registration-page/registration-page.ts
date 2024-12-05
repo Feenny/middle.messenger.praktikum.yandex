@@ -1,3 +1,5 @@
+/* eslint-disable quotes */
+import AuthApi from '../../api/auth';
 import Block from '../../tools/Block';
 import RegistrationPageTemplate from './registration-page.hbs?raw';
 import './registration-page.scss';
@@ -9,6 +11,7 @@ import { InputField } from '../../components/input-field';
 import { Link } from '../../components/link';
 import { PageTitle } from '../../components';
 import { SidebarImg } from '../../components/sidebar-img';
+import { SignUpRequestData } from '../../api/types';
 
 import {
     nameValidation,
@@ -75,6 +78,7 @@ const inputFirstName = new InputFieldComponent({
         name: 'first_name',
         title: 'Имя',
         type: 'text',
+        value: 'Феня',
         events: {
             blur: (event: Event) => {
                 checkValidate(event, nameValidation, 'name');
@@ -91,6 +95,7 @@ const inputSecondName = new InputFieldComponent({
         name: 'second_name',
         title: 'Фамилия',
         type: 'text',
+        value: 'Шен',
         events: {
             blur: (event: Event) => {
                 checkValidate(event, nameValidation, 'name');
@@ -107,6 +112,7 @@ const inputEmail = new InputFieldComponent({
         name: 'email',
         title: 'Почта',
         type: 'email',
+        value: 'shenmail@mail.shen',
         events: {
             blur: (event: Event) => {
                 checkValidate(event, emailValidation, 'login');
@@ -123,6 +129,7 @@ const inputLogin = new InputFieldComponent({
         name: 'login',
         title: 'Логин',
         type: 'text',
+        value: 'shen',
         events: {
             blur: (event: Event) => {
                 checkValidate(event, loginValidation, 'login');
@@ -139,6 +146,7 @@ const inputPhone = new InputFieldComponent({
         name: 'phone',
         title: 'Телефон',
         type: 'tel',
+        value: '+79811111111',
         events: {
             blur: (event: Event) => {
                 checkValidate(event, phoneValidation, 'login');
@@ -148,13 +156,15 @@ const inputPhone = new InputFieldComponent({
 });
 
 const inputPassword = new InputFieldComponent({
-    errorMessage: 'Пароль должен содержать заглавную, цифру, от 8 до 40 символов',
+    errorMessage:
+        'Пароль должен содержать заглавную, цифру, от 8 до 40 символов',
     className: 'login-page__input',
     title: 'Пароль',
     Input: new InputComponent({
         name: 'password',
         title: 'Пароль',
         type: 'password',
+        value: 'Shenhe1331',
         events: {
             blur: (event: Event) => {
                 checkValidate(event, passwordValidation, 'password');
@@ -164,13 +174,15 @@ const inputPassword = new InputFieldComponent({
 });
 
 const inputRepeatPassword = new InputFieldComponent({
-    errorMessage: 'Пароль должен содержать заглавную, цифру, от 8 до 40 символов',
+    errorMessage:
+        'Пароль должен содержать заглавную, цифру, от 8 до 40 символов',
     className: 'login-page__input',
     title: 'Повторите пароль',
     Input: new InputComponent({
         name: 'password',
         title: 'Пароль',
         type: 'password',
+        value: 'Shenhe1331',
         events: {
             blur: (event: Event) => {
                 checkValidate(event, passwordValidation, 'password');
@@ -192,14 +204,21 @@ const inputFormContent = new InputFormComponent({
         inputRepeatPassword,
     ],
     Button: new ButtonComponent({
+        type: 'submit',
         text: 'Зарегистрироваться',
-        page: 'chat',
+        page: 'messenger',
     }),
     questionText: 'Есть аккаунт?',
     Link: new LinkComponent({
         text: 'Войти',
         page: 'login',
+        url: '/login',
     }),
+    events: {
+        submit: (event: Event) => {
+            signup(event);
+        },
+    },
 });
 
 export class RegistrationPage extends Block {
@@ -219,4 +238,47 @@ export class RegistrationPage extends Block {
     override render() {
         return '{{{ RegistrationTemplate }}}';
     }
+}
+
+async function signup(event: Event) {
+    event.preventDefault();
+    const form = event.target as HTMLFormElement;
+
+    const formFirstName = form.querySelector(`[name="first_name"]`);
+    const formFirstNameValue = (formFirstName as HTMLInputElement).value;
+
+    const formSecondName = form.querySelector(`[name="second_name"]`);
+    const formSecondNameValue = (formSecondName as HTMLInputElement).value;
+
+    const formLogin = form.querySelector(`[name="login"]`);
+    const formLoginValue = (formLogin as HTMLInputElement).value;
+
+    const formPassword = form.querySelector(`[name="password"]`);
+    const formPasswordValue = (formPassword as HTMLInputElement).value;
+
+    const formEmail = form.querySelector(`[name="email"]`);
+    const formEmailValue = (formEmail as HTMLInputElement).value;
+
+    const formPhone = form.querySelector(`[name="phone"]`);
+    const formPhoneValue = (formPhone as HTMLInputElement).value;
+
+    const registrationData: SignUpRequestData = {
+        first_name: formFirstNameValue,
+        second_name: formSecondNameValue,
+        login: formLoginValue,
+        email: formEmailValue,
+        password: formPasswordValue,
+        phone: formPhoneValue,
+    } as SignUpRequestData;
+
+    const authApi = new AuthApi();
+    try {
+        await authApi.signup(registrationData);
+    } catch (error: any) {
+        if (error.reason === 'User already in system') {
+            window.router.go('/messenger');
+            return;
+        }
+    }
+    window.router.go('/messenger');
 }

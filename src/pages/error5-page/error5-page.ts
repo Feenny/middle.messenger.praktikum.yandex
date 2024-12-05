@@ -22,7 +22,8 @@ export class Error5Page extends Block {
                 desctiption: 'Мы уже фиксим :)',
                 Link: new LinkComponent({
                     text: 'Назад к чатам',
-                    page: 'chat',
+                    page: 'messenger',
+                    url: 'messenger',
                 }),
             }),
         })

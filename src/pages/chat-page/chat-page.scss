@@ -1,6 +1,64 @@
+.add-button_wrapper {
+  width: 100%;
+  height: 44px;
+  margin-top: 12px;
+  position: relative;
+}
+
+.button__add-chat {
+  margin-top: 12px;
+}
+
 .chat-page {
   display: flex;
   flex-direction: column;
   width: 45vh;
   border-right: 1px solid rgb(240 240 240);
+}
+
+.chat__add-button {
+  margin: 0;
+  border-radius: 22px;
+  font-size: 22px;
+  height: 44px;
+  width: 44px;
+  font: 600 22px / 22px sans-sans;
+  position: absolute;
+}
+
+.chat__add_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.chat__link {
+  margin-top: 16px;
+}
+
+.chat__set-users {
+  width: 380px;
+  display: flex;
+  gap: 5%;
+}
+
+.chat__set-users button {
+  font-weight: 400;
+  font-size: 14px;
+  margin-top: 0;
+  // width: 80%;
+}
+
+.chat__set-users form {
+  width: 50%;
+}
+
+.button__add-user,
+.button__delete-user {
+  margin-top: 0;
+}
+
+.input-field__title {
+  align-self: flex-start;
 }

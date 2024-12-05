@@ -1,12 +1,11 @@
 @import "../../assets/variables";
 
 .input {
-  // height: $input-height;
   margin-top: 8px;
 
   &__element {
     border: 1px solid $border-light-color;
-    border-radius: $input-border-radius;
+    border-radius: 10px;
     padding: $input-padding;
     width: 100%;
     height: $input-height;

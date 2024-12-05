@@ -7,9 +7,8 @@ dns.setDefaultResultOrder('verbatim')
 export default defineConfig({
     root: resolve(__dirname, 'src'),
     build: {
-        outDir: '../dist',
+        outDir: resolve(__dirname, 'dist'),
     },
-    base: './',
     server: {
         host: 'localhost',
         port: 3000,
