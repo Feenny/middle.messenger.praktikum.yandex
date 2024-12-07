@@ -1,82 +1,59 @@
-// import { expect } from 'chai';
-// import sinon from 'sinon';
-// import Block from './Block';
+/* eslint-disable no-unused-expressions */
+/* eslint-disable operator-linebreak */
+import { expect } from 'chai';
+import Sinon from 'sinon';
+import Block from './Block.ts';
 
-// interface Props {
-//     text?: string;
-//     events?: Record<string, () => void>;
-// }
+interface Props {
+    text?: string;
+    events?: Record<string, () => void>;
+}
 
-// type Refs = {};
+describe('Block', () => {
+    let PageClass: typeof Block;
 
-// describe('Block', () => {
-//     let PageClass: typeof Block<Props, Refs>;
+    before(() => {
+        class Page extends Block {
+            constructor(props: Props) {
+                super({
+                    ...props,
+                });
+            }
 
-//     before(() => {
-//         class Page extends Block<Props, Refs> {
-//             constructor(props: Props) {
-//                 super({
-//                     ...props,
-//                 });
-//             }
+            render(): string {
+                return '<div><span id="test-text">{{text}}</span></div>';
+            }
+        }
 
-//             protected render(): string {
-//                 return `<div>
-//                     <span id="test-text">{{text}}</span>
-//                     <button>{{text-button}}</button>
-//                 </div>`;
-//             }
-//         }
+        PageClass = Page;
+    });
 
-//         PageClass = Page;
-//     });
+    it('Создан компонент с пропсами', () => {
+        const text = 'Привет!';
+        const pageComponent: any = new PageClass({ text });
 
-//     // написать тест на то что комопнент создается с переданными пропсами
-//     it('Должен создать компонент с состоянием из конструктора', () => {
-//         const text = 'Hello';
-//         const pageComponent = new PageClass({ text });
+        const spanText =
+            pageComponent.element?.querySelector('#test-text')?.textContent;
 
-//         const spanText =
-//             pageComponent.element?.querySelector('#test-text')?.innerHTML;
+        expect(spanText).to.be.eq(text);
+    });
 
-//         expect(spanText).to.be.eq(text);
-//     });
-//     // проверить что реактивность у копонента работает
-//     it('Компонент должен иметь реактивное повдение', () => {
-//         const text = 'new value';
-//         const pageComponent = new PageClass({ text: 'Hello' });
+    it('Событие вызвано', () => {
+        const handler = Sinon.stub();
+        const component = new PageClass({
+            text: 'Информация в свойстве text',
+            events: { click: handler },
+        });
+        const event = new MouseEvent('click');
+        component.getContent().dispatchEvent(event);
 
-//         pageComponent.setProps({ text });
-//         const spanText =
-//             pageComponent.element?.querySelector('#test-text')?.innerHTML;
+        expect(handler.calledOnce).to.be.true;
+    });
+    it('Вызван метод render при изменении пропсов', () => {
+        const component = new PageClass({ text: 'Информация в свойстве text' });
+        const spyDCM = Sinon.spy(component, 'render');
+        component.setProps({ text: 'Информация изменена через setProps' });
 
-//         expect(spanText).to.be.eq(text);
-//     });
-//     // проверить что комопнент навешивает события
-//     it('Компонент должен установить события на элемент', () => {
-//         const handlerStub = sinon.stub();
-//         const pageComponent = new PageClass({
-//             events: {
-//                 click: handlerStub,
-//             },
-//         });
-
-//         const event = new MouseEvent('click');
-//         pageComponent.element?.dispatchEvent(event);
-
-//         expect(handlerStub.calledOnce).to.be.true;
-//     });
-//     // проверить что dispatchComponentDidMount отрабатывает когда элемент попал в дом
-//     it('Компонент должен вызвать dispatchComponentDidMount метод', () => {
-//         const clock = sinon.useFakeTimers();
-//         const pageComponent = new PageClass();
-
-//         const spyCDM = sinon.spy(pageComponent, 'componentDidMount');
-
-//         const element = pageComponent.getContent();
-//         document.body.append(element!);
-//         clock.next();
-
-//         expect(spyCDM.calledOnce).to.be.true;
-//     });
-// });
+        expect(spyDCM.calledOnce).to.be.true;
+    });
+});
