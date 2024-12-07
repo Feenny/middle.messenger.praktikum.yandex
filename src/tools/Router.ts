@@ -1,5 +1,5 @@
-import Block from './Block';
-import { Route } from './Route';
+import Block from './Block.ts';
+import { Route } from './Route.ts';
 
 class Router {
     private routes: Route[] | undefined;

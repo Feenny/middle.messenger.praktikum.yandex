@@ -1,7 +1,8 @@
 /* eslint-disable operator-linebreak */
 /* eslint-disable func-names */
 /* eslint-disable prefer-promise-reject-errors */
-import queryStringify from '../utils/queryStringify';
+import queryStringify from '../utils/queryStringify.ts';
+// const queryStringify = require('./queryStringify');
 
 const METHODS = {
     GET: 'GET',
@@ -131,7 +132,7 @@ class HTTPTransport {
                         reject(new Error('Некорректный JSON в ответе'));
                     }
 
-                    window.router.go('/404');
+                    // window.router.go('/404');
                     reject(this.response);
                 } else {
                     reject(new Error());

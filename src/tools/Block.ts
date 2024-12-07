@@ -1,5 +1,5 @@
 import Handlebars from 'handlebars';
-import EventBus from './EventBus';
+import EventBus from './EventBus.ts';
 
 export interface IProps {
     __id?: string;
