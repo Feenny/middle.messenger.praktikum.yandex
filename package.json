@@ -12,6 +12,7 @@
     "lint:scss:fix": "npx stylelint \"**/*.scss\" --fix",
     "lint": "eslint . --ext .ts,.tsx",
     "lint:fix": "eslint . --ext .ts,.tsx --fix",
+    "stylelint": "stylelint \"**/*.scss\"",
     "stylelint:fix": "stylelint \"**/*.scss\" --fix",
     "server": "node server.js",
     "start": "npm run build && npm run server",
@@ -63,6 +64,7 @@
     "vite-plugin-static-copy": "^1.0.5"
   },
   "dependencies": {
+    "eslint-config-airbnb-base": "^15.0.0",
     "express": "^4.19.2",
     "stylelint-scss": "^6.3.2",
     "vite-plugin-handlebars": "^2.0.0"
